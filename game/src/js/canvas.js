@@ -17,9 +17,13 @@ const c = canvas.getContext("2d");
 canvas.width = 1024;
 canvas.height = 576;
 
+//Device Support Prompt
+//alert("The game works best on a device with keyboard support");
+
 //Inputing the value of gravity
 const gravity = 0.5;
 
+//Creating Player traits
 class Player {
   constructor() {
     this.speed = 8;
@@ -53,6 +57,7 @@ class Player {
     this.currentCropWidth = 177;
   }
 
+  //Drawing Player on Canvas
   draw() {
     c.drawImage(
       this.currentSprite,
@@ -91,6 +96,7 @@ class Player {
   }
 }
 
+//Creating Platform traits
 class Platform {
   constructor({ x, y, image }) {
     this.position = {
@@ -106,6 +112,7 @@ class Platform {
   }
 }
 
+//Creating Game Images(Background)
 class GenericObject {
   constructor({ x, y, image }) {
     this.position = {
@@ -127,6 +134,7 @@ function createImage(imageSrc) {
   return image;
 }
 
+//Creating Enemy Traits
 class Enemy {
   constructor({ x, y, image }) {
     this.position = { x, y };
@@ -162,6 +170,7 @@ const keys = {
   },
 };
 
+//Drawing objects on the canvas
 let scrollOffset = 0;
 function init() {
   platformImage = createImage(platform_pic);
