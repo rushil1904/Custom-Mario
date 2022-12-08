@@ -427,7 +427,7 @@ function animate() {
     }
   });
 
-  //enemy encounter
+  //enemy encounter ----------------  TO DO -------------------------------
   enemies.forEach((enemy) => {
     if (
       player.position.y + player.height <= enemy.position.y &&
@@ -438,11 +438,11 @@ function animate() {
     ) {
       enemy.height = 10;
       enemy.position.y = 460;
-    }
-  });
-  enemies.forEach((enemy) => {
-    if (player.position.x == enemy.position.x) {
-      location.reload();
+    } else if (
+      player.position.x + player.width >= enemy.position.x &&
+      player.position.x <= enemy.position.x + enemy.width &&
+      player.position.y + player.height + player.velocity.y >= enemy.position.y
+    ) {
       console.log("Enemy encounter"); //To Do
     }
   });
