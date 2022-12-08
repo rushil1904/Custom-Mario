@@ -91,7 +91,7 @@ class Player {
       this.velocity.y += gravity;
     }
     enemies.forEach((enemy) => {
-      enemy.position.x -= 1;
+      enemy.position.x -= player.speed * 0.1;
     });
   }
 }
@@ -158,8 +158,7 @@ let player = new Player();
 let platforms = [];
 let genericObjects = [];
 let enemies = [];
-//let enemy_pic = createImage(enemy1);
-//let enemy_pic_2 = createImage(enemy2);
+
 let lastKey;
 
 const keys = {
@@ -178,17 +177,17 @@ function init() {
   player = new Player();
   enemies = [
     new Enemy({
-      x: 1744,
+      x: 1544,
       y: 350,
       image: createImage(enemy1),
     }),
     new Enemy({
-      x: 3728,
+      x: 2928,
       y: 350,
       image: createImage(enemy1),
     }),
     new Enemy({
-      x: 3628,
+      x: 3028,
       y: 350,
       image: createImage(enemy1),
     }),
@@ -208,22 +207,22 @@ function init() {
       image: createImage(enemy2),
     }),
     new Enemy({
-      x: 9748,
+      x: 9948,
       y: 350,
       image: createImage(enemy1),
     }),
     new Enemy({
-      x: 9788,
+      x: 10048,
       y: 350,
       image: createImage(enemy1),
     }),
     new Enemy({
-      x: 9868,
+      x: 10148,
       y: 350,
       image: createImage(enemy2),
     }),
     new Enemy({
-      x: 9948,
+      x: 10248,
       y: 350,
       image: createImage(enemy2),
     }),
@@ -441,7 +440,12 @@ function animate() {
       enemy.position.y = 460;
     }
   });
-
+  enemies.forEach((enemy) => {
+    if (player.position.x == enemy.position.x) {
+      location.reload();
+      console.log("Enemy encounter"); //To Do
+    }
+  });
   //sprite switching
   if (
     keys.right.pressed &&
