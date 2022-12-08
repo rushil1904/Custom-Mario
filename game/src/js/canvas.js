@@ -158,7 +158,8 @@ let player = new Player();
 let platforms = [];
 let genericObjects = [];
 let enemies = [];
-let enemy_pic = createImage(enemy1);
+//let enemy_pic = createImage(enemy1);
+//let enemy_pic_2 = createImage(enemy2);
 let lastKey;
 
 const keys = {
@@ -177,100 +178,175 @@ function init() {
   player = new Player();
   enemies = [
     new Enemy({
-      x: 500,
+      x: 1744,
       y: 350,
       image: createImage(enemy1),
+    }),
+    new Enemy({
+      x: 3728,
+      y: 350,
+      image: createImage(enemy1),
+    }),
+    new Enemy({
+      x: 3628,
+      y: 350,
+      image: createImage(enemy1),
+    }),
+    new Enemy({
+      x: 5520,
+      y: 350,
+      image: createImage(enemy2),
+    }),
+    new Enemy({
+      x: 7232,
+      y: 350,
+      image: createImage(enemy2),
+    }),
+    new Enemy({
+      x: 7132,
+      y: 350,
+      image: createImage(enemy2),
+    }),
+    new Enemy({
+      x: 9748,
+      y: 350,
+      image: createImage(enemy1),
+    }),
+    new Enemy({
+      x: 9788,
+      y: 350,
+      image: createImage(enemy1),
+    }),
+    new Enemy({
+      x: 9868,
+      y: 350,
+      image: createImage(enemy2),
+    }),
+    new Enemy({
+      x: 9948,
+      y: 350,
+      image: createImage(enemy2),
     }),
   ];
   platforms = [
     new Platform({
-      x: platformImage.width * 5 + 200,
+      x: platformImage.width * 5 + 220, // 1st Elevated platform/4th platform
       y: 270,
       image: createImage(platformSmallTall),
     }),
     new Platform({
-      x: platformImage.width * 10 + 200,
+      x: platformImage.width * 10 + 200, // 2nd Elevated platform/7th platform
       y: 270,
       image: createImage(platformSmallTall),
     }),
     new Platform({
-      x: platformImage.width * 15 + 200,
+      x: platformImage.width * 15 + 200, // 3rd Elevated platform/10th platform
       y: 270,
       image: createImage(platformSmallTall),
     }),
-    new Platform({ x: -1, y: 470, image: platformImage }),
     new Platform({
-      x: platformImage.width - 3,
+      x: platformImage.width * 22 + 20, // 4th Elevated platform/15th platform
+      y: 270,
+      image: createImage(platformSmallTall),
+    }),
+    new Platform({ x: -1, y: 470, image: platformImage }), // 1st platform
+    new Platform({
+      x: platformImage.width - 3, // 1st platform
       y: 470,
       image: platformImage,
     }),
     new Platform({
-      x: platformImage.width * 2 + 100,
+      x: platformImage.width * 2 + 100, // 2nd platform
       y: 470,
       image: platformImage,
     }),
     new Platform({
-      x: platformImage.width * 3,
+      x: platformImage.width * 3, // 2nd platform
       y: 470,
       image: platformImage,
     }),
     new Platform({
-      x: platformImage.width * 4 + 200,
+      x: platformImage.width * 4 + 200, // 3rd platform
       y: 470,
       image: platformImage,
     }),
     new Platform({
-      x: platformImage.width * 6 + 200,
+      x: platformImage.width * 6 + 200, // 5th platform
       y: 470,
       image: platformImage,
     }),
     new Platform({
-      x: platformImage.width * 8 - 10,
+      x: platformImage.width * 8 - 10, // 6th platform
       y: 470,
       image: platformImage,
     }),
     new Platform({
-      x: platformImage.width * 9 - 11,
+      x: platformImage.width * 9 - 11, // 6th platform
       y: 470,
       image: platformImage,
     }),
     new Platform({
-      x: platformImage.width * 11 + 200,
+      x: platformImage.width * 11 + 200, // 8th platform
       y: 470,
       image: platformImage,
     }),
     new Platform({
-      x: platformImage.width * 12 + 199,
+      x: platformImage.width * 12 + 199, // 8th platform
       y: 470,
       image: platformImage,
     }),
     new Platform({
-      x: platformImage.width * 14,
+      x: platformImage.width * 14, // 9th platform
       y: 470,
       image: platformImage,
     }),
     new Platform({
-      x: platformImage.width * 16 + 50,
+      x: platformImage.width * 16 + 50, // 11th platform
       y: 470,
       image: platformImage,
     }),
     new Platform({
-      x: platformImage.width * 17 - 51,
+      x: platformImage.width * 17 - 51, // 11th platform
       y: 470,
       image: platformImage,
     }),
     new Platform({
-      x: platformImage.width * 18 + 50,
+      x: platformImage.width * 18 + 40, // 12th platform
       y: 470,
       image: platformImage,
     }),
     new Platform({
-      x: platformImage.width * 19 + 49,
+      x: platformImage.width * 20 - 47, // 13th platform
       y: 470,
       image: platformImage,
     }),
     new Platform({
-      x: platformImage.width * 20 + 47,
+      x: platformImage.width * 21 - 47, // 13th platform
+      y: 470,
+      image: platformImage,
+    }),
+    new Platform({
+      x: platformImage.width * 23 + 30, // 15th platform
+      y: 470,
+      image: platformImage,
+    }),
+    new Platform({
+      x: platformImage.width * 24 + 90, // 16th platform
+      y: 470,
+      image: platformImage,
+    }),
+    new Platform({
+      x: platformImage.width * 26, // 16th + 1 platform
+      y: 470,
+      image: platformImage,
+    }),
+    new Platform({
+      x: platformImage.width * 27 - 45, // 17th platform
+      y: 470,
+      image: platformImage,
+    }),
+    new Platform({
+      x: platformImage.width * 28 - 45, //17th platform/Finish line
       y: 470,
       image: platformImage,
     }),
@@ -403,9 +479,10 @@ function animate() {
   }
 
   //win condition
-  if (scrollOffset > 6000) {
+  if (scrollOffset > 25000) {
     console.log("You win!");
   }
+  console.log(scrollOffset);
   //lose condition
   if (player.position.y > canvas.height) {
     init();
