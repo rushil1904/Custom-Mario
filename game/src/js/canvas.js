@@ -206,26 +206,26 @@ function init() {
       y: 350,
       image: createImage(enemy2),
     }),
-    new Enemy({
-      x: 9948,
-      y: 350,
-      image: createImage(enemy1),
-    }),
-    new Enemy({
-      x: 10048,
-      y: 350,
-      image: createImage(enemy1),
-    }),
-    new Enemy({
-      x: 10148,
-      y: 350,
-      image: createImage(enemy2),
-    }),
-    new Enemy({
-      x: 10248,
-      y: 350,
-      image: createImage(enemy2),
-    }),
+    //new Enemy({
+    //x: 9948,
+    //y: 350,
+    //image: createImage(enemy1),
+    //}),
+    //new Enemy({
+    // x: 10048,
+    // y: 350,
+    //image: createImage(enemy1),
+    //}),
+    //new Enemy({
+    //x: 10148,
+    //y: 350,
+    //image: createImage(enemy2),
+    //}),
+    //new Enemy({
+    //x: 10248,
+    //y: 350,
+    //image: createImage(enemy2),
+    //}),
   ];
   platforms = [
     new Platform({
@@ -427,7 +427,7 @@ function animate() {
     }
   });
 
-  //enemy encounter ----------------  TO DO -------------------------------
+  //enemy encounter ----------------  TO DO -------------------------------   // Try switch statements
   enemies.forEach((enemy) => {
     if (
       player.position.y + player.height <= enemy.position.y &&
@@ -443,9 +443,13 @@ function animate() {
       player.position.x <= enemy.position.x + enemy.width &&
       player.position.y + player.height + player.velocity.y >= enemy.position.y
     ) {
-      console.log("Enemy encounter"); //To Do
+      console.log(enemy.height);
+      if (enemy.height != 10) {
+        init();
+      }
     }
   });
+
   //sprite switching
   if (
     keys.right.pressed &&
