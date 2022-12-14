@@ -413,6 +413,9 @@ function animate() {
       enemy.position.x -= player.speed * 0.6;
     });
   }
+  if (keys.left.pressed && scrollOffset == 0) {
+    console.log("Life mai hamesha aage badhne ka chotte!!");
+  }
 
   // platform collision detection
   platforms.forEach((platform) => {
