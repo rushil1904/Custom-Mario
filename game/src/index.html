@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <title>Bhati Custom Mario</title>
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=VT323&display=swap");
       body {
         margin: 0;
         background-color: black;
@@ -12,9 +13,37 @@
         justify-content: center;
         height: 100vh;
       }
+      .messages {
+        color: white;
+        display: flex;
+        position: absolute;
+        justify-content: right;
+        width: 1004px;
+        height: 666px;
+        font-family: "VT323", monospace;
+        font-size: 20px;
+      }
+      .points {
+        color: orange;
+        display: flex;
+        position: absolute;
+        justify-content: center;
+        width: 1004px;
+        font-family: "VT323", monospace;
+        font-size: 20px;
+        padding-top: 650px;
+      }
     </style>
   </head>
   <body>
-    <canvas></canvas>
+    <div class="messages">
+      <p>Message: Lorem ipsum dolor sit amet consectetur</p>
+    </div>
+    <div class="canvas">
+      <canvas></canvas>
+    </div>
+    <div class="points">
+      <p>Points: 6969</p>
+    </div>
   </body>
 </html>
