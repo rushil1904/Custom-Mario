@@ -545,7 +545,7 @@ function animate() {
     if (player.position.y + player.height <= platform.position.y && player.position.y + player.height + player.velocity.y >= platform.position.y && player.position.x + player.width >= platform.position.x && player.position.x <= platform.position.x + platform.width) {
       player.velocity.y = 0;
     }
-  }); //enemy encounter ----------------  TO DO -------------------------------   // Try switch statements
+  }); //enemy encounter
 
   enemies.forEach(function (enemy) {
     if (player.position.y + player.height <= enemy.position.y && player.position.y + player.height + player.velocity.y >= enemy.position.y && player.position.x + player.width >= enemy.position.x && player.position.x <= enemy.position.x + enemy.width) {
@@ -577,21 +577,26 @@ function animate() {
     player.currentSprite = player.sprites.stand.right;
     player.currentCropWidth = player.sprites.stand.cropWidth;
     player.width = player.sprites.stand.width;
-  } //win condition
+  } // Points scored by player
 
+
+  var points_player = scrollOffset; //win condition
 
   if (scrollOffset > 25000) {
     console.log("You win!");
   }
 
   console.log(scrollOffset); //lose condition
+  //let last_game_score = [""];
 
   if (player.position.y > canvas.height) {
+    //last_game_score.push(points_player);
+    //console.log("Score:" + last_game_score);
     init();
-  } // Points scored by player
+  } //message = "You scored " + last_game_score.slice(-1) + "in the last game!";
 
 
-  document.getElementById("points").innerHTML = "Points:" + scrollOffset;
+  document.getElementById("points").innerHTML = "Points:" + points_player;
   document.getElementById("message").innerHTML = message;
 }
 

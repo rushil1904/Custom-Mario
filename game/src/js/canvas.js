@@ -431,7 +431,7 @@ function animate() {
     }
   });
 
-  //enemy encounter ----------------  TO DO -------------------------------   // Try switch statements
+  //enemy encounter
   enemies.forEach((enemy) => {
     if (
       player.position.y + player.height <= enemy.position.y &&
@@ -489,6 +489,8 @@ function animate() {
     player.currentCropWidth = player.sprites.stand.cropWidth;
     player.width = player.sprites.stand.width;
   }
+  // Points scored by player
+  let points_player = scrollOffset;
 
   //win condition
   if (scrollOffset > 25000) {
@@ -496,11 +498,15 @@ function animate() {
   }
   console.log(scrollOffset);
   //lose condition
+  //let last_game_score = [""];
   if (player.position.y > canvas.height) {
+    //last_game_score.push(points_player);
+    //console.log("Score:" + last_game_score);
     init();
   }
-  // Points scored by player
-  document.getElementById("points").innerHTML = "Points:" + scrollOffset;
+
+  //message = "You scored " + last_game_score.slice(-1) + "in the last game!";
+  document.getElementById("points").innerHTML = "Points:" + points_player;
   document.getElementById("message").innerHTML = message;
 }
 
