@@ -126,9 +126,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 var canvas = document.querySelector("canvas");
 var c = canvas.getContext("2d");
 canvas.width = 1024;
-canvas.height = 576; //Inputing the value of gravity
+canvas.height = 576; //Device Support Prompt
+//alert("The game works best on a device with keyboard support");
+//Inputing the value of gravity
 
-var gravity = 0.5;
+var gravity = 0.5; //Creating Player traits
 
 var Player = /*#__PURE__*/function () {
   function Player() {
@@ -163,7 +165,8 @@ var Player = /*#__PURE__*/function () {
     };
     this.currentSprite = this.sprites.stand.right;
     this.currentCropWidth = 177;
-  }
+  } //Drawing Player on Canvas
+
 
   _createClass(Player, [{
     key: "draw",
@@ -184,13 +187,14 @@ var Player = /*#__PURE__*/function () {
       }
 
       enemies.forEach(function (enemy) {
-        enemy.position.x -= 1;
+        enemy.position.x -= player.speed * 0.1;
       });
     }
   }]);
 
   return Player;
-}();
+}(); //Creating Platform traits
+
 
 var Platform = /*#__PURE__*/function () {
   function Platform(_ref) {
@@ -217,7 +221,8 @@ var Platform = /*#__PURE__*/function () {
   }]);
 
   return Platform;
-}();
+}(); //Creating Game Images(Background)
+
 
 var GenericObject = /*#__PURE__*/function () {
   function GenericObject(_ref2) {
@@ -250,7 +255,8 @@ function createImage(imageSrc) {
   var image = new Image();
   image.src = imageSrc;
   return image;
-}
+} //Creating Enemy Traits
+
 
 var Enemy = /*#__PURE__*/function () {
   function Enemy(_ref3) {
@@ -284,7 +290,6 @@ var player = new Player();
 var platforms = [];
 var genericObjects = [];
 var enemies = [];
-var enemy_pic = createImage(_media_enemy1_png__WEBPACK_IMPORTED_MODULE_8__["default"]);
 var lastKey;
 var keys = {
   right: {
@@ -293,91 +298,181 @@ var keys = {
   left: {
     pressed: false
   }
-};
+}; //Drawing objects on the canvas
+
 var scrollOffset = 0;
 
 function init() {
   platformImage = createImage(_media_platform_png__WEBPACK_IMPORTED_MODULE_0__["default"]);
   player = new Player();
   enemies = [new Enemy({
-    x: 500,
+    x: 1544,
     y: 350,
     image: createImage(_media_enemy1_png__WEBPACK_IMPORTED_MODULE_8__["default"])
-  })];
+  }), new Enemy({
+    x: 2928,
+    y: 350,
+    image: createImage(_media_enemy1_png__WEBPACK_IMPORTED_MODULE_8__["default"])
+  }), new Enemy({
+    x: 3028,
+    y: 350,
+    image: createImage(_media_enemy1_png__WEBPACK_IMPORTED_MODULE_8__["default"])
+  }), new Enemy({
+    x: 5520,
+    y: 350,
+    image: createImage(_media_enemy2_png__WEBPACK_IMPORTED_MODULE_9__["default"])
+  }), new Enemy({
+    x: 7232,
+    y: 350,
+    image: createImage(_media_enemy2_png__WEBPACK_IMPORTED_MODULE_9__["default"])
+  }), new Enemy({
+    x: 7132,
+    y: 350,
+    image: createImage(_media_enemy2_png__WEBPACK_IMPORTED_MODULE_9__["default"])
+  }) //new Enemy({
+  //x: 9948,
+  //y: 350,
+  //image: createImage(enemy1),
+  //}),
+  //new Enemy({
+  // x: 10048,
+  // y: 350,
+  //image: createImage(enemy1),
+  //}),
+  //new Enemy({
+  //x: 10148,
+  //y: 350,
+  //image: createImage(enemy2),
+  //}),
+  //new Enemy({
+  //x: 10248,
+  //y: 350,
+  //image: createImage(enemy2),
+  //}),
+  ];
   platforms = [new Platform({
-    x: platformImage.width * 5 + 200,
+    x: platformImage.width * 5 + 220,
+    // 1st Elevated platform/4th platform
     y: 270,
     image: createImage(_media_platformSmallTall_png__WEBPACK_IMPORTED_MODULE_3__["default"])
   }), new Platform({
     x: platformImage.width * 10 + 200,
+    // 2nd Elevated platform/7th platform
     y: 270,
     image: createImage(_media_platformSmallTall_png__WEBPACK_IMPORTED_MODULE_3__["default"])
   }), new Platform({
     x: platformImage.width * 15 + 200,
+    // 3rd Elevated platform/10th platform
+    y: 270,
+    image: createImage(_media_platformSmallTall_png__WEBPACK_IMPORTED_MODULE_3__["default"])
+  }), new Platform({
+    x: platformImage.width * 22 + 20,
+    // 4th Elevated platform/15th platform
     y: 270,
     image: createImage(_media_platformSmallTall_png__WEBPACK_IMPORTED_MODULE_3__["default"])
   }), new Platform({
     x: -1,
     y: 470,
     image: platformImage
-  }), new Platform({
+  }), // 1st platform
+  new Platform({
     x: platformImage.width - 3,
+    // 1st platform
     y: 470,
     image: platformImage
   }), new Platform({
     x: platformImage.width * 2 + 100,
+    // 2nd platform
     y: 470,
     image: platformImage
   }), new Platform({
     x: platformImage.width * 3,
+    // 2nd platform
     y: 470,
     image: platformImage
   }), new Platform({
     x: platformImage.width * 4 + 200,
+    // 3rd platform
     y: 470,
     image: platformImage
   }), new Platform({
     x: platformImage.width * 6 + 200,
+    // 5th platform
     y: 470,
     image: platformImage
   }), new Platform({
     x: platformImage.width * 8 - 10,
+    // 6th platform
     y: 470,
     image: platformImage
   }), new Platform({
     x: platformImage.width * 9 - 11,
+    // 6th platform
     y: 470,
     image: platformImage
   }), new Platform({
     x: platformImage.width * 11 + 200,
+    // 8th platform
     y: 470,
     image: platformImage
   }), new Platform({
     x: platformImage.width * 12 + 199,
+    // 8th platform
     y: 470,
     image: platformImage
   }), new Platform({
     x: platformImage.width * 14,
+    // 9th platform
     y: 470,
     image: platformImage
   }), new Platform({
     x: platformImage.width * 16 + 50,
+    // 11th platform
     y: 470,
     image: platformImage
   }), new Platform({
     x: platformImage.width * 17 - 51,
+    // 11th platform
     y: 470,
     image: platformImage
   }), new Platform({
-    x: platformImage.width * 18 + 50,
+    x: platformImage.width * 18 + 40,
+    // 12th platform
     y: 470,
     image: platformImage
   }), new Platform({
-    x: platformImage.width * 19 + 49,
+    x: platformImage.width * 20 - 47,
+    // 13th platform
     y: 470,
     image: platformImage
   }), new Platform({
-    x: platformImage.width * 20 + 47,
+    x: platformImage.width * 21 - 47,
+    // 13th platform
+    y: 470,
+    image: platformImage
+  }), new Platform({
+    x: platformImage.width * 23 + 30,
+    // 15th platform
+    y: 470,
+    image: platformImage
+  }), new Platform({
+    x: platformImage.width * 24 + 90,
+    // 16th platform
+    y: 470,
+    image: platformImage
+  }), new Platform({
+    x: platformImage.width * 26,
+    // 16th + 1 platform
+    y: 470,
+    image: platformImage
+  }), new Platform({
+    x: platformImage.width * 27 - 45,
+    // 17th platform
+    y: 470,
+    image: platformImage
+  }), new Platform({
+    x: platformImage.width * 28 - 45,
+    //17th platform/Finish line
     y: 470,
     image: platformImage
   })];
@@ -437,6 +532,10 @@ function animate() {
     enemies.forEach(function (enemy) {
       enemy.position.x -= player.speed * 0.6;
     });
+  }
+
+  if (keys.left.pressed && scrollOffset == 0) {
+    console.log("Life mai hamesha aage badhne ka chotte!!");
   } // platform collision detection
 
 
@@ -444,12 +543,18 @@ function animate() {
     if (player.position.y + player.height <= platform.position.y && player.position.y + player.height + player.velocity.y >= platform.position.y && player.position.x + player.width >= platform.position.x && player.position.x <= platform.position.x + platform.width) {
       player.velocity.y = 0;
     }
-  }); //enemy encounter
+  }); //enemy encounter ----------------  TO DO -------------------------------   // Try switch statements
 
   enemies.forEach(function (enemy) {
     if (player.position.y + player.height <= enemy.position.y && player.position.y + player.height + player.velocity.y >= enemy.position.y && player.position.x + player.width >= enemy.position.x && player.position.x <= enemy.position.x + enemy.width) {
       enemy.height = 10;
       enemy.position.y = 460;
+    } else if (player.position.x + player.width >= enemy.position.x && player.position.x <= enemy.position.x + enemy.width && player.position.y + player.height + player.velocity.y >= enemy.position.y) {
+      console.log(enemy.height);
+
+      if (enemy.height != 10) {
+        init();
+      }
     }
   }); //sprite switching
 
@@ -473,10 +578,11 @@ function animate() {
   } //win condition
 
 
-  if (scrollOffset > 6000) {
+  if (scrollOffset > 25000) {
     console.log("You win!");
-  } //lose condition
+  }
 
+  console.log(scrollOffset); //lose condition
 
   if (player.position.y > canvas.height) {
     init();
