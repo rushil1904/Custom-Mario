@@ -413,8 +413,9 @@ function animate() {
       enemy.position.x -= player.speed * 0.6;
     });
   }
+  var message = "";
   if (keys.left.pressed && scrollOffset == 0) {
-    console.log("Life mai hamesha aage badhne ka chotte!!");
+    message = "Life mai hamesha aage badhne ka chotte!!";
   }
 
   // platform collision detection
@@ -498,6 +499,9 @@ function animate() {
   if (player.position.y > canvas.height) {
     init();
   }
+  // Points scored by player
+  document.getElementById("points").innerHTML = "Points:" + scrollOffset;
+  document.getElementById("message").innerHTML = message;
 }
 
 init();
