@@ -105,6 +105,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _media_spriteRunRight_png__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../media/spriteRunRight.png */ "./src/media/spriteRunRight.png");
 /* harmony import */ var _media_enemy1_png__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../media/enemy1.png */ "./src/media/enemy1.png");
 /* harmony import */ var _media_enemy2_png__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../media/enemy2.png */ "./src/media/enemy2.png");
+/* harmony import */ var _media_panda_png__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../media/panda.png */ "./src/media/panda.png");
+/* harmony import */ var _media_mhm_loho_png__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../media/mhm_loho.png */ "./src/media/mhm_loho.png");
+/* harmony import */ var _media_heart_game_png__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../media/heart_game.png */ "./src/media/heart_game.png");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -112,6 +115,9 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 // Importing media
+
+
+
 
 
 
@@ -249,6 +255,36 @@ var GenericObject = /*#__PURE__*/function () {
   }]);
 
   return GenericObject;
+}(); //Creating Powerups/down
+
+
+var PowerSource = /*#__PURE__*/function () {
+  function PowerSource(_ref3) {
+    var x = _ref3.x,
+        y = _ref3.y,
+        image = _ref3.image,
+        effect = _ref3.effect;
+
+    _classCallCheck(this, PowerSource);
+
+    this.position = {
+      x: x,
+      y: y
+    };
+    this.image = image;
+    this.width = 70;
+    this.height = 70;
+    this.effect = effect;
+  }
+
+  _createClass(PowerSource, [{
+    key: "draw",
+    value: function draw() {
+      c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);
+    }
+  }]);
+
+  return PowerSource;
 }();
 
 function createImage(imageSrc) {
@@ -259,10 +295,10 @@ function createImage(imageSrc) {
 
 
 var Enemy = /*#__PURE__*/function () {
-  function Enemy(_ref3) {
-    var x = _ref3.x,
-        y = _ref3.y,
-        image = _ref3.image;
+  function Enemy(_ref4) {
+    var x = _ref4.x,
+        y = _ref4.y,
+        image = _ref4.image;
 
     _classCallCheck(this, Enemy);
 
@@ -290,6 +326,7 @@ var player = new Player();
 var platforms = [];
 var genericObjects = [];
 var enemies = [];
+var PowerSources = [];
 var lastKey;
 var keys = {
   right: {
@@ -309,27 +346,29 @@ function init() {
     x: 1544,
     y: 350,
     image: createImage(_media_enemy1_png__WEBPACK_IMPORTED_MODULE_8__["default"])
-  }), new Enemy({
-    x: 2928,
-    y: 350,
-    image: createImage(_media_enemy1_png__WEBPACK_IMPORTED_MODULE_8__["default"])
-  }), new Enemy({
+  }), //new Enemy({
+  //x: 2928,
+  //y: 350,
+  //image: createImage(enemy1),
+  //}),
+  new Enemy({
     x: 3028,
     y: 350,
-    image: createImage(_media_enemy1_png__WEBPACK_IMPORTED_MODULE_8__["default"])
+    image: createImage(_media_enemy2_png__WEBPACK_IMPORTED_MODULE_9__["default"])
   }), new Enemy({
     x: 5520,
     y: 350,
-    image: createImage(_media_enemy2_png__WEBPACK_IMPORTED_MODULE_9__["default"])
+    image: createImage(_media_enemy1_png__WEBPACK_IMPORTED_MODULE_8__["default"])
   }), new Enemy({
     x: 7232,
-    y: 350,
-    image: createImage(_media_enemy2_png__WEBPACK_IMPORTED_MODULE_9__["default"])
-  }), new Enemy({
-    x: 7132,
-    y: 350,
-    image: createImage(_media_enemy2_png__WEBPACK_IMPORTED_MODULE_9__["default"])
+    y: 370,
+    image: createImage(_media_panda_png__WEBPACK_IMPORTED_MODULE_10__["default"])
   }) //new Enemy({
+  //x: 7132,
+  //y: 350,
+  //image: createImage(enemy2),
+  //}),
+  //new Enemy({
   //x: 9948,
   //y: 350,
   //image: createImage(enemy1),
@@ -350,6 +389,17 @@ function init() {
   //image: createImage(enemy2),
   //}),
   ];
+  PowerSources = [new PowerSource({
+    x: 12094,
+    y: 400,
+    image: createImage(_media_heart_game_png__WEBPACK_IMPORTED_MODULE_12__["default"]),
+    effect: "powerDown"
+  }), new PowerSource({
+    x: 12888,
+    y: 208,
+    image: createImage(_media_mhm_loho_png__WEBPACK_IMPORTED_MODULE_11__["default"]),
+    effect: "powerUp"
+  })];
   platforms = [new Platform({
     x: platformImage.width * 5 + 220,
     // 1st Elevated platform/4th platform
@@ -502,6 +552,9 @@ function animate() {
   enemies.forEach(function (enemy) {
     enemy.draw();
   });
+  PowerSources.forEach(function (PowerSource) {
+    PowerSource.draw();
+  });
   player.update();
 
   if (keys.right.pressed && player.position.x < 400) {
@@ -518,6 +571,9 @@ function animate() {
     genericObjects.forEach(function (genericObject) {
       genericObject.position.x -= player.speed * 0.66;
     });
+    PowerSources.forEach(function (powerSource) {
+      powerSource.position.x -= player.speed;
+    });
   } else if (keys.left.pressed && scrollOffset > 0) {
     scrollOffset -= player.speed;
     platforms.forEach(function (platform) {
@@ -525,6 +581,9 @@ function animate() {
     });
     genericObjects.forEach(function (genericObject) {
       genericObject.position.x += player.speed * 0.66;
+    });
+    PowerSources.forEach(function (powerSource) {
+      powerSource.position.x += player.speed;
     });
   }
 
@@ -556,6 +615,18 @@ function animate() {
 
       if (enemy.height != 10) {
         init();
+      }
+    }
+  }); //Power Source encounter
+
+  PowerSources.forEach(function (powerSource) {
+    if (player.position.x + player.width >= powerSource.position.x && player.position.x <= powerSource.position.x + powerSource.width && player.position.y + player.height + player.velocity.y >= powerSource.position.y) {
+      console.log("power source hit");
+
+      if (powerSource.effect == "powerDown") {
+        console.log("powerDown");
+      } else if (powerSource.effect == "powerUp") {
+        console.log("powerUp");
       }
     }
   }); //sprite switching
@@ -602,8 +673,8 @@ function animate() {
 
 init();
 animate();
-window.addEventListener("keydown", function (_ref4) {
-  var keyCode = _ref4.keyCode;
+window.addEventListener("keydown", function (_ref5) {
+  var keyCode = _ref5.keyCode;
 
   switch (keyCode) {
     case 65:
@@ -628,8 +699,8 @@ window.addEventListener("keydown", function (_ref4) {
       break;
   }
 });
-window.addEventListener("keyup", function (_ref5) {
-  var keyCode = _ref5.keyCode;
+window.addEventListener("keyup", function (_ref6) {
+  var keyCode = _ref6.keyCode;
 
   switch (keyCode) {
     case 65:
@@ -697,6 +768,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/media/heart_game.png":
+/*!**********************************!*\
+  !*** ./src/media/heart_game.png ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "d8ad841a67fe4c9730087090cdc3575a.png");
+
+/***/ }),
+
 /***/ "./src/media/hills.png":
 /*!*****************************!*\
   !*** ./src/media/hills.png ***!
@@ -707,6 +791,32 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "cfffe4c371f5e11d372b398a87c51dd0.png");
+
+/***/ }),
+
+/***/ "./src/media/mhm_loho.png":
+/*!********************************!*\
+  !*** ./src/media/mhm_loho.png ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "687c5adc6a474917abc287ae7a11b2c8.png");
+
+/***/ }),
+
+/***/ "./src/media/panda.png":
+/*!*****************************!*\
+  !*** ./src/media/panda.png ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "7c5578a0c735372cd6dc7c76b6c398a7.png");
 
 /***/ }),
 

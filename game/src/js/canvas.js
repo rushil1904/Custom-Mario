@@ -9,6 +9,9 @@ import spriteRunLeft from "../media/spriteRunLeft.png";
 import spriteRunRight from "../media/spriteRunRight.png";
 import enemy1 from "../media/enemy1.png";
 import enemy2 from "../media/enemy2.png";
+import panda from "../media/panda.png";
+import mhm_logo from "../media/mhm_loho.png";
+import heart from "../media/heart_game.png";
 
 //Setting up the canvas for the game
 const canvas = document.querySelector("canvas");
@@ -128,6 +131,29 @@ class GenericObject {
   }
 }
 
+//Creating Powerups/down
+class PowerSource {
+  constructor({ x, y, image, effect }) {
+    this.position = {
+      x,
+      y,
+    };
+    this.image = image;
+    this.width = 70;
+    this.height = 70;
+    this.effect = effect;
+  }
+  draw() {
+    c.drawImage(
+      this.image,
+      this.position.x,
+      this.position.y,
+      this.width,
+      this.height
+    );
+  }
+}
+
 function createImage(imageSrc) {
   const image = new Image();
   image.src = imageSrc;
@@ -158,6 +184,7 @@ let player = new Player();
 let platforms = [];
 let genericObjects = [];
 let enemies = [];
+let PowerSources = [];
 
 let lastKey;
 
@@ -181,31 +208,31 @@ function init() {
       y: 350,
       image: createImage(enemy1),
     }),
-    new Enemy({
-      x: 2928,
-      y: 350,
-      image: createImage(enemy1),
-    }),
+    //new Enemy({
+    //x: 2928,
+    //y: 350,
+    //image: createImage(enemy1),
+    //}),
     new Enemy({
       x: 3028,
       y: 350,
-      image: createImage(enemy1),
+      image: createImage(enemy2),
     }),
     new Enemy({
       x: 5520,
       y: 350,
-      image: createImage(enemy2),
+      image: createImage(enemy1),
     }),
     new Enemy({
       x: 7232,
-      y: 350,
-      image: createImage(enemy2),
+      y: 370,
+      image: createImage(panda),
     }),
-    new Enemy({
-      x: 7132,
-      y: 350,
-      image: createImage(enemy2),
-    }),
+    //new Enemy({
+    //x: 7132,
+    //y: 350,
+    //image: createImage(enemy2),
+    //}),
     //new Enemy({
     //x: 9948,
     //y: 350,
@@ -226,6 +253,20 @@ function init() {
     //y: 350,
     //image: createImage(enemy2),
     //}),
+  ];
+  PowerSources = [
+    new PowerSource({
+      x: 12094,
+      y: 400,
+      image: createImage(heart),
+      effect: "powerDown",
+    }),
+    new PowerSource({
+      x: 12888,
+      y: 208,
+      image: createImage(mhm_logo),
+      effect: "powerUp",
+    }),
   ];
   platforms = [
     new Platform({
@@ -380,6 +421,9 @@ function animate() {
   enemies.forEach((enemy) => {
     enemy.draw();
   });
+  PowerSources.forEach((PowerSource) => {
+    PowerSource.draw();
+  });
 
   player.update();
   if (keys.right.pressed && player.position.x < 400) {
@@ -399,6 +443,9 @@ function animate() {
     genericObjects.forEach((genericObject) => {
       genericObject.position.x -= player.speed * 0.66;
     });
+    PowerSources.forEach((powerSource) => {
+      powerSource.position.x -= player.speed;
+    });
   } else if (keys.left.pressed && scrollOffset > 0) {
     scrollOffset -= player.speed;
     platforms.forEach((platform) => {
@@ -406,6 +453,9 @@ function animate() {
     });
     genericObjects.forEach((genericObject) => {
       genericObject.position.x += player.speed * 0.66;
+    });
+    PowerSources.forEach((powerSource) => {
+      powerSource.position.x += player.speed;
     });
   }
   if (keys.right.pressed) {
@@ -450,6 +500,23 @@ function animate() {
       console.log(enemy.height);
       if (enemy.height != 10) {
         init();
+      }
+    }
+  });
+
+  //Power Source encounter
+  PowerSources.forEach((powerSource) => {
+    if (
+      player.position.x + player.width >= powerSource.position.x &&
+      player.position.x <= powerSource.position.x + powerSource.width &&
+      player.position.y + player.height + player.velocity.y >=
+        powerSource.position.y
+    ) {
+      console.log("power source hit");
+      if (powerSource.effect == "powerDown") {
+        console.log("powerDown");
+      } else if (powerSource.effect == "powerUp") {
+        console.log("powerUp");
       }
     }
   });
