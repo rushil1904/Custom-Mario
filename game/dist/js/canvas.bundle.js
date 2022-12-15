@@ -108,6 +108,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _media_panda_png__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../media/panda.png */ "./src/media/panda.png");
 /* harmony import */ var _media_mhm_loho_png__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../media/mhm_loho.png */ "./src/media/mhm_loho.png");
 /* harmony import */ var _media_heart_game_png__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../media/heart_game.png */ "./src/media/heart_game.png");
+/* harmony import */ var _media_bride_png__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../media/bride.png */ "./src/media/bride.png");
+/* harmony import */ var _media_marriage_png__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../media/marriage.png */ "./src/media/marriage.png");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -115,6 +117,8 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 // Importing media
+
+
 
 
 
@@ -399,6 +403,11 @@ function init() {
     y: 208,
     image: createImage(_media_mhm_loho_png__WEBPACK_IMPORTED_MODULE_11__["default"]),
     effect: "powerUp"
+  }), new PowerSource({
+    x: 14050,
+    y: 400,
+    image: createImage(_media_bride_png__WEBPACK_IMPORTED_MODULE_13__["default"]),
+    effect: "marriage"
   })];
   platforms = [new Platform({
     x: platformImage.width * 5 + 220,
@@ -663,7 +672,8 @@ function animate() {
   if (player.position.y > canvas.height) {
     //last_game_score.push(points_player);
     //console.log("Score:" + last_game_score);
-    init();
+    message = "Aur ghoomo Kheer Ganga!!";
+    setTimeout(init, 2000);
   } //message = "You scored " + last_game_score.slice(-1) + "in the last game!";
 
 
@@ -742,6 +752,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/media/bride.png":
+/*!*****************************!*\
+  !*** ./src/media/bride.png ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "de9c230215f33a1192fe6ca4c2c52a44.png");
+
+/***/ }),
+
 /***/ "./src/media/enemy1.png":
 /*!******************************!*\
   !*** ./src/media/enemy1.png ***!
@@ -791,6 +814,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "cfffe4c371f5e11d372b398a87c51dd0.png");
+
+/***/ }),
+
+/***/ "./src/media/marriage.png":
+/*!********************************!*\
+  !*** ./src/media/marriage.png ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "ace870be108854533bbbedd9dc51202b.png");
 
 /***/ }),
 
