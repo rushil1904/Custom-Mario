@@ -110,6 +110,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _media_heart_game_png__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../media/heart_game.png */ "./src/media/heart_game.png");
 /* harmony import */ var _media_bride_png__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../media/bride.png */ "./src/media/bride.png");
 /* harmony import */ var _media_marriage_png__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../media/marriage.png */ "./src/media/marriage.png");
+/* harmony import */ var _media_Group_without_png__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../media/Group_without.png */ "./src/media/Group_without.png");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -117,6 +118,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 // Importing media
+
 
 
 
@@ -404,10 +406,15 @@ function init() {
     image: createImage(_media_mhm_loho_png__WEBPACK_IMPORTED_MODULE_11__["default"]),
     effect: "powerUp"
   }), new PowerSource({
-    x: 14050,
+    x: 14470,
     y: 400,
     image: createImage(_media_bride_png__WEBPACK_IMPORTED_MODULE_13__["default"]),
     effect: "marriage"
+  }), new PowerSource({
+    x: 15310,
+    y: 400,
+    image: createImage(_media_Group_without_png__WEBPACK_IMPORTED_MODULE_15__["default"]),
+    effect: "group"
   })];
   platforms = [new Platform({
     x: platformImage.width * 5 + 220,
@@ -736,6 +743,19 @@ window.addEventListener("keyup", function (_ref6) {
       break;
   }
 });
+
+/***/ }),
+
+/***/ "./src/media/Group_without.png":
+/*!*************************************!*\
+  !*** ./src/media/Group_without.png ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "540c33c6db0c8837e957a70979dd3eae.png");
 
 /***/ }),
 

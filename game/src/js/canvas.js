@@ -14,6 +14,7 @@ import mhm_logo from "../media/mhm_loho.png";
 import heart from "../media/heart_game.png";
 import bride from "../media/bride.png";
 import marriage from "../media/marriage.png";
+import group_without_player from "../media/Group_without.png";
 
 //Setting up the canvas for the game
 const canvas = document.querySelector("canvas");
@@ -270,10 +271,16 @@ function init() {
       effect: "powerUp",
     }),
     new PowerSource({
-      x: 14050,
+      x: 14470,
       y: 400,
       image: createImage(bride),
       effect: "marriage",
+    }),
+    new PowerSource({
+      x: 15310,
+      y: 400,
+      image: createImage(group_without_player),
+      effect: "group",
     }),
   ];
   platforms = [
