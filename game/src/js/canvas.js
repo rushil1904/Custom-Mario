@@ -15,6 +15,7 @@ import heart from "../media/heart_game.png";
 import bride from "../media/bride.png";
 import marriage from "../media/marriage.png";
 import group_without_player from "../media/Group_without.png";
+import group_with_player from "../media/Group_with.png";
 
 //Setting up the canvas for the game
 const canvas = document.querySelector("canvas");
@@ -136,14 +137,14 @@ class GenericObject {
 
 //Creating Powerups/down
 class PowerSource {
-  constructor({ x, y, image, effect }) {
+  constructor({ x, y, image, effect, width, height }) {
     this.position = {
       x,
       y,
     };
     this.image = image;
-    this.width = 70;
-    this.height = 70;
+    this.width = width;
+    this.height = height;
     this.effect = effect;
   }
   draw() {
@@ -165,11 +166,11 @@ function createImage(imageSrc) {
 
 //Creating Enemy Traits
 class Enemy {
-  constructor({ x, y, image }) {
+  constructor({ x, y, image, width, height }) {
     this.position = { x, y };
     this.image = image;
-    this.width = 100;
-    this.height = 130;
+    this.width = width;
+    this.height = height;
   }
   draw() {
     c.drawImage(
@@ -210,6 +211,8 @@ function init() {
       x: 1544,
       y: 350,
       image: createImage(enemy1),
+      width: 100,
+      height: 130,
     }),
     //new Enemy({
     //x: 2928,
@@ -220,16 +223,22 @@ function init() {
       x: 3028,
       y: 350,
       image: createImage(enemy2),
+      width: 100,
+      height: 130,
     }),
     new Enemy({
       x: 5520,
       y: 350,
       image: createImage(enemy1),
+      width: 100,
+      height: 130,
     }),
     new Enemy({
       x: 7232,
-      y: 370,
+      y: 300,
       image: createImage(panda),
+      width: 200,
+      height: 230,
     }),
     //new Enemy({
     //x: 7132,
@@ -263,24 +272,48 @@ function init() {
       y: 400,
       image: createImage(heart),
       effect: "powerDown",
+      width: 70,
+      height: 70,
     }),
     new PowerSource({
       x: 12888,
       y: 208,
       image: createImage(mhm_logo),
       effect: "powerUp",
+      width: 70,
+      height: 70,
     }),
     new PowerSource({
       x: 14470,
-      y: 400,
+      y: 325,
       image: createImage(bride),
-      effect: "marriage",
+      effect: "bride",
+      width: 120,
+      height: 150,
     }),
     new PowerSource({
-      x: 15310,
-      y: 400,
+      x: 14070,
+      y: 325,
+      image: createImage(marriage),
+      effect: "marriage",
+      width: 120,
+      height: 150,
+    }),
+    new PowerSource({
+      x: 15310, //15310
+      y: 210,
       image: createImage(group_without_player),
       effect: "group",
+      width: 230,
+      height: 300,
+    }),
+    new PowerSource({
+      x: 620, //15310
+      y: 120,
+      image: createImage(group_with_player),
+      effect: "group",
+      width: 500,
+      height: 350,
     }),
   ];
   platforms = [
@@ -532,6 +565,8 @@ function animate() {
         console.log("powerDown");
       } else if (powerSource.effect == "powerUp") {
         console.log("powerUp");
+      } else if (powerSource.effect == "bride") {
+        console.log("bride");
       }
     }
   });

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bhati: The Game</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <a href="#" class="logo">LOGO</a>
+      <ul>
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#">Contribute</a></li>
+        <li><a href="#">Support</a></li>
+      </ul>
+    </header>
+    <section>
+      <img src="scene3.png" id="scenery" />
+      <img src="hill6.png" id="mountain" />
+      <h2 id="text">Bhati: The Game</h2>
+      <a href="#sec" id="btn">Explore</a>
+    </section>
+    <div class="sec" id="sec">
+      <h2>Parallax Scrolling Effects</h2>
+      <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero iste
+        laboriosam justo sapiente voluptatum a, incidunt culpa quae.
+        Necessitatibus vero exercitationem accusantium nemo culpa ipsa tempora
+        quia? Aliquam, nemo doloribus. lorem<br /><br />
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero iste
+        laboriosam justo sapiente voluptatum a, incidunt culpa quae.
+        Necessitatibus vero exercitationem accusantium nemo culpa ipsa tempora
+        quia? Aliquam, nemo doloribus.<br /><br />
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero iste
+        laboriosam justo sapiente voluptatum a, incidunt culpa quae.
+        Necessitatibus vero exercitationem accusantium nemo culpa ipsa tempora
+        quia? Aliquam, nemo doloribus.
+      </p>
+    </div>
+    <script>
+      let scenery = document.getElementById("scenery");
+      let text = document.getElementById("text");
+      let btn = document.getElementById("btn");
+
+      window.addEventListener("scroll", function () {
+        let value = window.scrollY;
+        scenery.style.top = value * 0.5 + "px";
+
+        text.style.marginRight = value * 4 + "px";
+      });
+    </script>
+  </body>
+</html>

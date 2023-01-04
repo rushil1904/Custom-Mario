@@ -111,6 +111,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _media_bride_png__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../media/bride.png */ "./src/media/bride.png");
 /* harmony import */ var _media_marriage_png__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../media/marriage.png */ "./src/media/marriage.png");
 /* harmony import */ var _media_Group_without_png__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../media/Group_without.png */ "./src/media/Group_without.png");
+/* harmony import */ var _media_Group_with_png__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../media/Group_with.png */ "./src/media/Group_with.png");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -118,6 +119,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 // Importing media
+
 
 
 
@@ -269,7 +271,9 @@ var PowerSource = /*#__PURE__*/function () {
     var x = _ref3.x,
         y = _ref3.y,
         image = _ref3.image,
-        effect = _ref3.effect;
+        effect = _ref3.effect,
+        width = _ref3.width,
+        height = _ref3.height;
 
     _classCallCheck(this, PowerSource);
 
@@ -278,8 +282,8 @@ var PowerSource = /*#__PURE__*/function () {
       y: y
     };
     this.image = image;
-    this.width = 70;
-    this.height = 70;
+    this.width = width;
+    this.height = height;
     this.effect = effect;
   }
 
@@ -304,7 +308,9 @@ var Enemy = /*#__PURE__*/function () {
   function Enemy(_ref4) {
     var x = _ref4.x,
         y = _ref4.y,
-        image = _ref4.image;
+        image = _ref4.image,
+        width = _ref4.width,
+        height = _ref4.height;
 
     _classCallCheck(this, Enemy);
 
@@ -313,8 +319,8 @@ var Enemy = /*#__PURE__*/function () {
       y: y
     };
     this.image = image;
-    this.width = 100;
-    this.height = 130;
+    this.width = width;
+    this.height = height;
   }
 
   _createClass(Enemy, [{
@@ -351,7 +357,9 @@ function init() {
   enemies = [new Enemy({
     x: 1544,
     y: 350,
-    image: createImage(_media_enemy1_png__WEBPACK_IMPORTED_MODULE_8__["default"])
+    image: createImage(_media_enemy1_png__WEBPACK_IMPORTED_MODULE_8__["default"]),
+    width: 100,
+    height: 130
   }), //new Enemy({
   //x: 2928,
   //y: 350,
@@ -360,15 +368,21 @@ function init() {
   new Enemy({
     x: 3028,
     y: 350,
-    image: createImage(_media_enemy2_png__WEBPACK_IMPORTED_MODULE_9__["default"])
+    image: createImage(_media_enemy2_png__WEBPACK_IMPORTED_MODULE_9__["default"]),
+    width: 100,
+    height: 130
   }), new Enemy({
     x: 5520,
     y: 350,
-    image: createImage(_media_enemy1_png__WEBPACK_IMPORTED_MODULE_8__["default"])
+    image: createImage(_media_enemy1_png__WEBPACK_IMPORTED_MODULE_8__["default"]),
+    width: 100,
+    height: 130
   }), new Enemy({
     x: 7232,
-    y: 370,
-    image: createImage(_media_panda_png__WEBPACK_IMPORTED_MODULE_10__["default"])
+    y: 300,
+    image: createImage(_media_panda_png__WEBPACK_IMPORTED_MODULE_10__["default"]),
+    width: 200,
+    height: 230
   }) //new Enemy({
   //x: 7132,
   //y: 350,
@@ -399,22 +413,46 @@ function init() {
     x: 12094,
     y: 400,
     image: createImage(_media_heart_game_png__WEBPACK_IMPORTED_MODULE_12__["default"]),
-    effect: "powerDown"
+    effect: "powerDown",
+    width: 70,
+    height: 70
   }), new PowerSource({
     x: 12888,
     y: 208,
     image: createImage(_media_mhm_loho_png__WEBPACK_IMPORTED_MODULE_11__["default"]),
-    effect: "powerUp"
+    effect: "powerUp",
+    width: 70,
+    height: 70
   }), new PowerSource({
     x: 14470,
-    y: 400,
+    y: 325,
     image: createImage(_media_bride_png__WEBPACK_IMPORTED_MODULE_13__["default"]),
-    effect: "marriage"
+    effect: "bride",
+    width: 120,
+    height: 150
+  }), new PowerSource({
+    x: 14070,
+    y: 325,
+    image: createImage(_media_marriage_png__WEBPACK_IMPORTED_MODULE_14__["default"]),
+    effect: "marriage",
+    width: 120,
+    height: 150
   }), new PowerSource({
     x: 15310,
-    y: 400,
+    //15310
+    y: 210,
     image: createImage(_media_Group_without_png__WEBPACK_IMPORTED_MODULE_15__["default"]),
-    effect: "group"
+    effect: "group",
+    width: 230,
+    height: 300
+  }), new PowerSource({
+    x: 620,
+    //15310
+    y: 120,
+    image: createImage(_media_Group_with_png__WEBPACK_IMPORTED_MODULE_16__["default"]),
+    effect: "group",
+    width: 500,
+    height: 350
   })];
   platforms = [new Platform({
     x: platformImage.width * 5 + 220,
@@ -643,6 +681,8 @@ function animate() {
         console.log("powerDown");
       } else if (powerSource.effect == "powerUp") {
         console.log("powerUp");
+      } else if (powerSource.effect == "bride") {
+        console.log("bride");
       }
     }
   }); //sprite switching
@@ -743,6 +783,19 @@ window.addEventListener("keyup", function (_ref6) {
       break;
   }
 });
+
+/***/ }),
+
+/***/ "./src/media/Group_with.png":
+/*!**********************************!*\
+  !*** ./src/media/Group_with.png ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "a3465e105a38d3f10d16081e13902349.png");
 
 /***/ }),
 
