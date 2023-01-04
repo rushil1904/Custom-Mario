@@ -19,7 +19,7 @@ header
         top: 0;
         left: 0;
         width: 100%;
-        padding: 30px 100px;
+        padding: 30px 100px;            /* Maybe left/right padding can be changed */
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -33,6 +33,12 @@ header .logo
         font-size: 2em;
         text-transform: uppercase;
         Letter-spacing: 2px;
+}
+header .logo img {
+        width: 4rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
 }
 header ul
 {
@@ -67,6 +73,7 @@ section
         display: flex;
         justify-content: center;
         align-items: center;
+        overflow: hidden;
 }
 section::before
 {
@@ -87,6 +94,10 @@ section img {
         object-fit: cover;
         pointer-events: none;
 }
+section img#sun {
+        mix-blend-mode: screen;
+        overflow: hidden;
+}
 section img#mountain {
         z-index: 10;
 }
@@ -95,9 +106,9 @@ section img#mountain {
     right: -350px;
     color: rgb(255, 255, 255);
     white-space: nowrap; 
-    font-size: 7.5vw;
+    font-size: 8.0vw;
     z-index: 9;
-    text-shadow:
+    /* text-shadow:
       0 0 7px #fff,
       0 0 10px #fff,
       0 0 21px #fff,
@@ -105,7 +116,7 @@ section img#mountain {
       0 0 82px rgb(215, 141, 247),
       0 0 92px rgb(215, 141, 247),
       0 0 102px rgb(215, 141, 247),
-      0 0 151px rgb(215, 141, 247);
+      0 0 151px rgb(215, 141, 247); */
 }
 #btn
 {
