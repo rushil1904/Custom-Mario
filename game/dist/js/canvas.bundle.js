@@ -424,36 +424,37 @@ function init() {
     width: 70,
     height: 70
   }), new PowerSource({
-    x: 14470,
+    x: 14300,
     y: 325,
     image: createImage(_media_bride_png__WEBPACK_IMPORTED_MODULE_13__["default"]),
     effect: "bride",
     width: 120,
     height: 150
-  }), new PowerSource({
-    x: 14070,
-    y: 325,
-    image: createImage(_media_marriage_png__WEBPACK_IMPORTED_MODULE_14__["default"]),
-    effect: "marriage",
-    width: 120,
-    height: 150
-  }), new PowerSource({
-    x: 15310,
+  }), // new PowerSource({
+  //   x: 14470,
+  //   y: 325,
+  //   image: createImage(marriage),
+  //   effect: "marriage",
+  //   width: 120,
+  //   height: 150,
+  // }),
+  new PowerSource({
+    x: 15702,
     //15310
     y: 210,
     image: createImage(_media_Group_without_png__WEBPACK_IMPORTED_MODULE_15__["default"]),
     effect: "group",
     width: 230,
     height: 300
-  }), new PowerSource({
-    x: 620,
-    //15310
-    y: 120,
-    image: createImage(_media_Group_with_png__WEBPACK_IMPORTED_MODULE_16__["default"]),
-    effect: "group",
-    width: 500,
-    height: 350
-  })];
+  }) // new PowerSource({
+  //   x: 620, //15310
+  //   y: 120,
+  //   image: createImage(group_with_player),
+  //   effect: "group",
+  //   width: 500,
+  //   height: 350,
+  // }),
+  ];
   platforms = [new Platform({
     x: platformImage.width * 5 + 220,
     // 1st Elevated platform/4th platform
@@ -678,11 +679,24 @@ function animate() {
       console.log("power source hit");
 
       if (powerSource.effect == "powerDown") {
-        console.log("powerDown");
+        message = "Kuch nahi rakha pyaar vyaar mai"; // <TO DO> Subtracting score from the final tally
       } else if (powerSource.effect == "powerUp") {
-        console.log("powerUp");
+        message = "Subscribe to Maths hi Maths!";
       } else if (powerSource.effect == "bride") {
-        console.log("bride");
+        powerSource.image = createImage(_media_marriage_png__WEBPACK_IMPORTED_MODULE_14__["default"]);
+        message = "Mubarak ho SHAADI ke liye";
+      } else if (powerSource.effect == "group") {
+        // player.width = 0;
+        // player.height = 0;
+        //win condition
+        if (scrollOffset > 15374) {
+          message = "<3";
+          powerSource.image = createImage(_media_Group_with_png__WEBPACK_IMPORTED_MODULE_16__["default"]);
+          powerSource.width = 500;
+          powerSource.height = 350;
+          player.currentCropWidth = 0;
+          player.speed = 0;
+        }
       }
     }
   }); //sprite switching
@@ -707,13 +721,7 @@ function animate() {
   } // Points scored by player
 
 
-  var points_player = scrollOffset; //win condition
-
-  if (scrollOffset > 25000) {
-    console.log("You win!");
-  }
-
-  console.log(scrollOffset); //lose condition
+  var points_player = scrollOffset; //lose condition
   //let last_game_score = [""];
 
   if (player.position.y > canvas.height) {
@@ -795,7 +803,7 @@ window.addEventListener("keyup", function (_ref6) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "a3465e105a38d3f10d16081e13902349.png");
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "2beb1e912e913501a1e4688cfe37589d.png");
 
 /***/ }),
 

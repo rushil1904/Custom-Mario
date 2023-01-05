@@ -284,37 +284,37 @@ function init() {
       height: 70,
     }),
     new PowerSource({
-      x: 14470,
+      x: 14300,
       y: 325,
       image: createImage(bride),
       effect: "bride",
       width: 120,
       height: 150,
     }),
+    // new PowerSource({
+    //   x: 14470,
+    //   y: 325,
+    //   image: createImage(marriage),
+    //   effect: "marriage",
+    //   width: 120,
+    //   height: 150,
+    // }),
     new PowerSource({
-      x: 14070,
-      y: 325,
-      image: createImage(marriage),
-      effect: "marriage",
-      width: 120,
-      height: 150,
-    }),
-    new PowerSource({
-      x: 15310, //15310
+      x: 15702, //15310
       y: 210,
       image: createImage(group_without_player),
       effect: "group",
       width: 230,
       height: 300,
     }),
-    new PowerSource({
-      x: 620, //15310
-      y: 120,
-      image: createImage(group_with_player),
-      effect: "group",
-      width: 500,
-      height: 350,
-    }),
+    // new PowerSource({
+    //   x: 620, //15310
+    //   y: 120,
+    //   image: createImage(group_with_player),
+    //   effect: "group",
+    //   width: 500,
+    //   height: 350,
+    // }),
   ];
   platforms = [
     new Platform({
@@ -562,11 +562,25 @@ function animate() {
     ) {
       console.log("power source hit");
       if (powerSource.effect == "powerDown") {
-        console.log("powerDown");
+        message = "Kuch nahi rakha pyaar vyaar mai";
+        // <TO DO> Subtracting score from the final tally
       } else if (powerSource.effect == "powerUp") {
-        console.log("powerUp");
+        message = "Subscribe to Maths hi Maths!";
       } else if (powerSource.effect == "bride") {
-        console.log("bride");
+        powerSource.image = createImage(marriage);
+        message = "Mubarak ho SHAADI ke liye";
+      } else if (powerSource.effect == "group") {
+        // player.width = 0;
+        // player.height = 0;
+        //win condition
+        if (scrollOffset > 15374) {
+          message = "<3";
+          powerSource.image = createImage(group_with_player);
+          powerSource.width = 500;
+          powerSource.height = 350;
+          player.currentCropWidth = 0;
+          player.speed = 0;
+        }
       }
     }
   });
@@ -609,11 +623,6 @@ function animate() {
   // Points scored by player
   let points_player = scrollOffset;
 
-  //win condition
-  if (scrollOffset > 25000) {
-    console.log("You win!");
-  }
-  console.log(scrollOffset);
   //lose condition
   //let last_game_score = [""];
   if (player.position.y > canvas.height) {
