@@ -576,7 +576,7 @@ function init() {
     y: 470,
     image: platformImage
   }), new Platform({
-    x: platformImage.width * 28 - 45,
+    x: platformImage.width * 28 - 55,
     //17th platform/Finish line
     y: 470,
     image: platformImage
@@ -649,6 +649,8 @@ function animate() {
   }
 
   var message = "";
+  var element = document.getElementById("bonus-text");
+  element.innerHTML = "";
 
   if (keys.left.pressed && scrollOffset == 0) {
     message = "Life mai hamesha aage badhne ka chotte!!";
@@ -681,7 +683,9 @@ function animate() {
       if (powerSource.effect == "powerDown") {
         message = "Kuch nahi rakha pyaar vyaar mai"; // <TO DO> Subtracting score from the final tally
       } else if (powerSource.effect == "powerUp") {
-        message = "Subscribe to Maths hi Maths!";
+        message = "Ma'am se milke zyada hi khush ho gaya <3";
+        element.innerHTML = "Subscribe to Maths hi Maths";
+        element.href = "https://www.youtube.com/@mathshimaths";
       } else if (powerSource.effect == "bride") {
         powerSource.image = createImage(_media_marriage_png__WEBPACK_IMPORTED_MODULE_14__["default"]);
         message = "Mubarak ho SHAADI ke liye";
@@ -689,8 +693,8 @@ function animate() {
         // player.width = 0;
         // player.height = 0;
         //win condition
-        if (scrollOffset > 15374) {
-          message = "<3";
+        if (scrollOffset > 15324) {
+          message = "Chahe jo ho jaye akhir final destination toh Nasshediyo ka Adda hi hai";
           powerSource.image = createImage(_media_Group_with_png__WEBPACK_IMPORTED_MODULE_16__["default"]);
           powerSource.width = 500;
           powerSource.height = 350;
@@ -803,7 +807,7 @@ window.addEventListener("keyup", function (_ref6) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "2beb1e912e913501a1e4688cfe37589d.png");
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "b9ba6c8e8e196e91669d77a599295a46.png");
 
 /***/ }),
 
