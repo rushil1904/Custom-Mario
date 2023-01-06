@@ -676,11 +676,9 @@ function animate() {
     }
   }); //Adding audio to the game
 
-  var sfx = {
-    marriage_sound: new Howl({
-      src: ["/Users/rushil/Public/Rushil/projects/Custom Mario/game/src/media/marriage_sound.mp3"]
-    })
-  }; //Power Source encounter
+  var sound = new Howl({
+    src: ["game/src/media/marriage_sound.mp3"]
+  }); //Power Source encounter
 
   PowerSources.forEach(function (powerSource) {
     if (player.position.x + player.width >= powerSource.position.x && player.position.x <= powerSource.position.x + powerSource.width && player.position.y + player.height + player.velocity.y >= powerSource.position.y) {
@@ -694,7 +692,7 @@ function animate() {
         element.href = "https://www.youtube.com/@mathshimaths";
       } else if (powerSource.effect == "bride") {
         powerSource.image = createImage(_media_marriage_png__WEBPACK_IMPORTED_MODULE_14__["default"]);
-        sfx.marriage_sound.play();
+        sound.play();
         message = "Mubarak ho SHAADI ke liye";
       } else if (powerSource.effect == "group") {
         // player.width = 0;
