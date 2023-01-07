@@ -677,7 +677,15 @@ function animate() {
   }); //Adding audio to the game
 
   var sound = new Howl({
-    src: ["game/src/media/marriage_sound.mp3"]
+    src: [// "https://cors-anywhere.herokuapp.com/https://github.com/rushil1904/Custom-Mario/blob/main/game/src/media/marriage_sound.mp3",
+      // "https://assets.codepen.io/21542/howler-push.mp3",
+      // "https://cors-anywhere.herokuapp.com/https://replit.com/@rushil1904/Assets#marriage_sound.mp3",
+      // "../media/marriage_sound.mp3",
+      // "https://drive.google.com/file/d/1oE-v2e1v2Ruut3Pdko29UnM9y2zeTwrR/view?usp=sharing",
+    ],
+    onend: function onend() {
+      console.log("Finished!");
+    }
   }); //Power Source encounter
 
   PowerSources.forEach(function (powerSource) {
