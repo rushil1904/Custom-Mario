@@ -674,19 +674,8 @@ function animate() {
         init();
       }
     }
-  }); //Adding audio to the game
-
-  var sound = new Howl({
-    src: [// "https://cors-anywhere.herokuapp.com/https://github.com/rushil1904/Custom-Mario/blob/main/game/src/media/marriage_sound.mp3",
-      // "https://assets.codepen.io/21542/howler-push.mp3",
-      // "https://cors-anywhere.herokuapp.com/https://replit.com/@rushil1904/Assets#marriage_sound.mp3",
-      // "../media/marriage_sound.mp3",
-      // "https://drive.google.com/file/d/1oE-v2e1v2Ruut3Pdko29UnM9y2zeTwrR/view?usp=sharing",
-    ],
-    onend: function onend() {
-      console.log("Finished!");
-    }
-  }); //Power Source encounter
+  });
+  var sounds = []; //Power Source encounter
 
   PowerSources.forEach(function (powerSource) {
     if (player.position.x + player.width >= powerSource.position.x && player.position.x <= powerSource.position.x + powerSource.width && player.position.y + player.height + player.velocity.y >= powerSource.position.y) {
@@ -700,8 +689,16 @@ function animate() {
         element.href = "https://www.youtube.com/@mathshimaths";
       } else if (powerSource.effect == "bride") {
         powerSource.image = createImage(_media_marriage_png__WEBPACK_IMPORTED_MODULE_14__["default"]);
-        sound.play();
+        var audio = new Audio( // "https://firebasestorage.googleapis.com/v0/b/storage-b57d1.appspot.com/o/marriage_sound.mp3?alt=media&token=41614b8f-7901-4279-9987-339534704cee"
+        "https://firebasestorage.googleapis.com/v0/b/storage-for-projects-d003c.appspot.com/o/marriage_sound.mp3?alt=media&token=d2cc3f35-5ef6-47fc-b7f2-99e29bf67b38");
+
+        if (!(audio in sounds)) {
+          audio.play();
+          sounds.push(audio);
+        }
+
         message = "Mubarak ho SHAADI ke liye";
+        setTimeout(audio.pause(), 5000);
       } else if (powerSource.effect == "group") {
         // player.width = 0;
         // player.height = 0;
