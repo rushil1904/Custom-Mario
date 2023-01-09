@@ -553,13 +553,19 @@ function animate() {
       }
     }
   });
-  var hasTriggered = false;
+
+  let play_audio = true;
   function play() {
-    if (hasTriggered) return;
     var audio = new Audio(
       "https://firebasestorage.googleapis.com/v0/b/storage-for-projects-d003c.appspot.com/o/marriage_sound.mp3?alt=media&token=d2cc3f35-5ef6-47fc-b7f2-99e29bf67b38"
     );
     audio.play();
+    audio.volume = 0.1;
+    audio.loop = false;
+  }
+  if (scrollOffset > 14000 && play_audio) {
+    play();
+    play_audio = false;
   }
   //Power Source encounter
   PowerSources.forEach((powerSource) => {
@@ -570,7 +576,6 @@ function animate() {
         powerSource.position.y
     ) {
       console.log("power source hit");
-
       if (powerSource.effect == "powerDown") {
         message = "Kuch nahi rakha pyaar vyaar mai";
         // <TO DO> Subtracting score from the final tally
@@ -581,8 +586,6 @@ function animate() {
       } else if (powerSource.effect == "bride") {
         powerSource.image = createImage(marriage);
         message = "Mubarak ho SHAADI ke liye";
-        play();
-        hasTriggered = true;
       } else if (powerSource.effect == "group") {
         //win condition
         if (scrollOffset > 15324) {
