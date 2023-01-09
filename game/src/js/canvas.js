@@ -553,8 +553,14 @@ function animate() {
       }
     }
   });
-
-  let sounds = [];
+  var hasTriggered = false;
+  function play() {
+    if (hasTriggered) return;
+    var audio = new Audio(
+      "https://firebasestorage.googleapis.com/v0/b/storage-for-projects-d003c.appspot.com/o/marriage_sound.mp3?alt=media&token=d2cc3f35-5ef6-47fc-b7f2-99e29bf67b38"
+    );
+    audio.play();
+  }
   //Power Source encounter
   PowerSources.forEach((powerSource) => {
     if (
@@ -564,6 +570,7 @@ function animate() {
         powerSource.position.y
     ) {
       console.log("power source hit");
+
       if (powerSource.effect == "powerDown") {
         message = "Kuch nahi rakha pyaar vyaar mai";
         // <TO DO> Subtracting score from the final tally
@@ -573,19 +580,10 @@ function animate() {
         element.href = "https://www.youtube.com/@mathshimaths";
       } else if (powerSource.effect == "bride") {
         powerSource.image = createImage(marriage);
-        let audio = new Audio(
-          // "https://firebasestorage.googleapis.com/v0/b/storage-b57d1.appspot.com/o/marriage_sound.mp3?alt=media&token=41614b8f-7901-4279-9987-339534704cee"
-          "https://firebasestorage.googleapis.com/v0/b/storage-for-projects-d003c.appspot.com/o/marriage_sound.mp3?alt=media&token=d2cc3f35-5ef6-47fc-b7f2-99e29bf67b38"
-        );
-        if (!(audio in sounds)) {
-          audio.play();
-          sounds.push(audio);
-        }
         message = "Mubarak ho SHAADI ke liye";
-        setTimeout(audio.pause(), 5000);
+        play();
+        hasTriggered = true;
       } else if (powerSource.effect == "group") {
-        // player.width = 0;
-        // player.height = 0;
         //win condition
         if (scrollOffset > 15324) {
           message =

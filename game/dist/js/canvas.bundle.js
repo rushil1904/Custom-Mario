@@ -675,7 +675,14 @@ function animate() {
       }
     }
   });
-  var sounds = []; //Power Source encounter
+  var hasTriggered = false;
+
+  function play() {
+    if (hasTriggered) return;
+    var audio = new Audio("https://firebasestorage.googleapis.com/v0/b/storage-for-projects-d003c.appspot.com/o/marriage_sound.mp3?alt=media&token=d2cc3f35-5ef6-47fc-b7f2-99e29bf67b38");
+    audio.play();
+  } //Power Source encounter
+
 
   PowerSources.forEach(function (powerSource) {
     if (player.position.x + player.width >= powerSource.position.x && player.position.x <= powerSource.position.x + powerSource.width && player.position.y + player.height + player.velocity.y >= powerSource.position.y) {
@@ -689,19 +696,10 @@ function animate() {
         element.href = "https://www.youtube.com/@mathshimaths";
       } else if (powerSource.effect == "bride") {
         powerSource.image = createImage(_media_marriage_png__WEBPACK_IMPORTED_MODULE_14__["default"]);
-        var audio = new Audio( // "https://firebasestorage.googleapis.com/v0/b/storage-b57d1.appspot.com/o/marriage_sound.mp3?alt=media&token=41614b8f-7901-4279-9987-339534704cee"
-        "https://firebasestorage.googleapis.com/v0/b/storage-for-projects-d003c.appspot.com/o/marriage_sound.mp3?alt=media&token=d2cc3f35-5ef6-47fc-b7f2-99e29bf67b38");
-
-        if (!(audio in sounds)) {
-          audio.play();
-          sounds.push(audio);
-        }
-
         message = "Mubarak ho SHAADI ke liye";
-        setTimeout(audio.pause(), 5000);
+        play();
+        hasTriggered = true;
       } else if (powerSource.effect == "group") {
-        // player.width = 0;
-        // player.height = 0;
         //win condition
         if (scrollOffset > 15324) {
           message = "Chahe jo ho jaye akhir final destination toh Nasshediyo ka Adda hi hai";
