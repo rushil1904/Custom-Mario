@@ -554,19 +554,15 @@ function animate() {
     }
   });
 
-  let play_audio = true;
-  function play() {
-    var audio = new Audio(
-      "https://firebasestorage.googleapis.com/v0/b/storage-for-projects-d003c.appspot.com/o/marriage_sound.mp3?alt=media&token=d2cc3f35-5ef6-47fc-b7f2-99e29bf67b38"
-    );
+  let play_sound = "false";
+
+  function play(link) {
+    var audio = new Audio(link);
     audio.play();
     audio.volume = 0.1;
     audio.loop = false;
   }
-  if (scrollOffset > 14000 && play_audio) {
-    play();
-    play_audio = false;
-  }
+
   //Power Source encounter
   PowerSources.forEach((powerSource) => {
     if (
@@ -576,6 +572,7 @@ function animate() {
         powerSource.position.y
     ) {
       console.log("power source hit");
+
       if (powerSource.effect == "powerDown") {
         message = "Kuch nahi rakha pyaar vyaar mai";
         // <TO DO> Subtracting score from the final tally
@@ -586,6 +583,7 @@ function animate() {
       } else if (powerSource.effect == "bride") {
         powerSource.image = createImage(marriage);
         message = "Mubarak ho SHAADI ke liye";
+        play_sound = "marriage";
       } else if (powerSource.effect == "group") {
         //win condition
         if (scrollOffset > 15324) {
@@ -596,10 +594,27 @@ function animate() {
           powerSource.height = 350;
           player.currentCropWidth = 0;
           player.speed = 0;
+          play_sound = "group";
         }
       }
     }
   });
+
+  if (play_sound == "marriage") {
+    setTimeout(
+      play(
+        "https://firebasestorage.googleapis.com/v0/b/storage-for-projects-d003c.appspot.com/o/marriage_sound.mp3?alt=media&token=d2cc3f35-5ef6-47fc-b7f2-99e29bf67b38"
+      ),
+      200
+    );
+  } else if (play_sound == "group") {
+    setTimeout(
+      play(
+        "https://firebasestorage.googleapis.com/v0/b/storage-for-projects-d003c.appspot.com/o/2023-01-09-153544-0hxsfl0d_kCIcpwuZ.mp3?alt=media&token=b20f08ae-1be1-448f-8914-9501778ac3f6"
+      ),
+      200
+    );
+  }
 
   //sprite switching
   if (

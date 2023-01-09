@@ -675,18 +675,13 @@ function animate() {
       }
     }
   });
-  var play_audio = true;
+  var play_sound = "false";
 
-  function play() {
-    var audio = new Audio("https://firebasestorage.googleapis.com/v0/b/storage-for-projects-d003c.appspot.com/o/marriage_sound.mp3?alt=media&token=d2cc3f35-5ef6-47fc-b7f2-99e29bf67b38");
+  function play(link) {
+    var audio = new Audio(link);
     audio.play();
     audio.volume = 0.1;
     audio.loop = false;
-  }
-
-  if (scrollOffset > 14000 && play_audio) {
-    play();
-    play_audio = false;
   } //Power Source encounter
 
 
@@ -703,6 +698,7 @@ function animate() {
       } else if (powerSource.effect == "bride") {
         powerSource.image = createImage(_media_marriage_png__WEBPACK_IMPORTED_MODULE_14__["default"]);
         message = "Mubarak ho SHAADI ke liye";
+        play_sound = "marriage";
       } else if (powerSource.effect == "group") {
         //win condition
         if (scrollOffset > 15324) {
@@ -712,10 +708,18 @@ function animate() {
           powerSource.height = 350;
           player.currentCropWidth = 0;
           player.speed = 0;
+          play_sound = "group";
         }
       }
     }
-  }); //sprite switching
+  });
+
+  if (play_sound == "marriage") {
+    setTimeout(play("https://firebasestorage.googleapis.com/v0/b/storage-for-projects-d003c.appspot.com/o/marriage_sound.mp3?alt=media&token=d2cc3f35-5ef6-47fc-b7f2-99e29bf67b38"), 200);
+  } else if (play_sound == "group") {
+    setTimeout(play("https://firebasestorage.googleapis.com/v0/b/storage-for-projects-d003c.appspot.com/o/2023-01-09-153544-0hxsfl0d_kCIcpwuZ.mp3?alt=media&token=b20f08ae-1be1-448f-8914-9501778ac3f6"), 200);
+  } //sprite switching
+
 
   if (keys.right.pressed && lastKey === "right" && player.currentSprite !== player.sprites.run.right) {
     player.frames = 1;
