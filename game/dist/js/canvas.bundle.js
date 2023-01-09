@@ -715,10 +715,16 @@ function animate() {
   });
 
   if (play_sound == "marriage") {
-    setTimeout(play("https://firebasestorage.googleapis.com/v0/b/storage-for-projects-d003c.appspot.com/o/marriage_sound.mp3?alt=media&token=d2cc3f35-5ef6-47fc-b7f2-99e29bf67b38"), 200);
-  } else if (play_sound == "group") {
-    setTimeout(play("https://firebasestorage.googleapis.com/v0/b/storage-for-projects-d003c.appspot.com/o/2023-01-09-153544-0hxsfl0d_kCIcpwuZ.mp3?alt=media&token=b20f08ae-1be1-448f-8914-9501778ac3f6"), 200);
-  } //sprite switching
+    setTimeout(play("https://firebasestorage.googleapis.com/v0/b/storage-for-projects-d003c.appspot.com/o/game-src-media-marriage-sound_gzK6Ajb8.mp3?alt=media&token=8366692c-3a4b-420d-82a7-1b482a526252"), 200);
+  } // else if (play_sound == "group") {
+  //   setTimeout(
+  //     play(
+  //       "https://firebasestorage.googleapis.com/v0/b/storage-for-projects-d003c.appspot.com/o/2023-01-09-153544-0hxsfl0d_kCIcpwuZ.mp3?alt=media&token=b20f08ae-1be1-448f-8914-9501778ac3f6"
+  //     ),
+  //     200
+  //   );
+  // }
+  //sprite switching
 
 
   if (keys.right.pressed && lastKey === "right" && player.currentSprite !== player.sprites.run.right) {
