@@ -24,6 +24,16 @@
         font-family: "VT323", monospace;
         font-size: 40px;
       }
+      .lose_message {
+        color: red;
+        display: flex;
+        position: absolute;
+        justify-content: center;
+        width: 1004px;
+        height: 566px;
+        font-family: "VT323", monospace;
+        font-size: 40px;
+      }
       .points {
         color: orange;
         display: flex;
@@ -51,6 +61,9 @@
   <body>
     <div class="messages">
       <p id="message">Message: Lorem ipsum dolor sit amet consectetur</p>
+    </div>
+    <div class="lose_message">
+      <p id="lose_message">Message: Lorem ipsum dolor sit amet consectetur</p>
     </div>
     <div class="canvas">
       <canvas></canvas>

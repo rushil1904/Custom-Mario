@@ -30,6 +30,19 @@ canvas.height = 576;
 //Inputing the value of gravity
 const gravity = 0.5;
 
+function lose_messages(event) {
+  let num = Math.random();
+
+  if (num > 0.5) {
+    return "Apne hi chamach se khode hue ghadde mai gir gaya";
+  } else {
+    return "Aur ghoomo Kheer Ganga!!";
+  }
+}
+
+var lose_message = lose_messages();
+console.log(lose_message);
+
 //Creating Player traits
 class Player {
   constructor() {
@@ -214,11 +227,6 @@ function init() {
       width: 100,
       height: 130,
     }),
-    //new Enemy({
-    //x: 2928,
-    //y: 350,
-    //image: createImage(enemy1),
-    //}),
     new Enemy({
       x: 3028,
       y: 350,
@@ -240,31 +248,6 @@ function init() {
       width: 200,
       height: 230,
     }),
-    //new Enemy({
-    //x: 7132,
-    //y: 350,
-    //image: createImage(enemy2),
-    //}),
-    //new Enemy({
-    //x: 9948,
-    //y: 350,
-    //image: createImage(enemy1),
-    //}),
-    //new Enemy({
-    // x: 10048,
-    // y: 350,
-    //image: createImage(enemy1),
-    //}),
-    //new Enemy({
-    //x: 10148,
-    //y: 350,
-    //image: createImage(enemy2),
-    //}),
-    //new Enemy({
-    //x: 10248,
-    //y: 350,
-    //image: createImage(enemy2),
-    //}),
   ];
   PowerSources = [
     new PowerSource({
@@ -291,14 +274,6 @@ function init() {
       width: 120,
       height: 150,
     }),
-    // new PowerSource({
-    //   x: 14470,
-    //   y: 325,
-    //   image: createImage(marriage),
-    //   effect: "marriage",
-    //   width: 120,
-    //   height: 150,
-    // }),
     new PowerSource({
       x: 15702, //15310
       y: 210,
@@ -307,14 +282,6 @@ function init() {
       width: 230,
       height: 300,
     }),
-    // new PowerSource({
-    //   x: 620, //15310
-    //   y: 120,
-    //   image: createImage(group_with_player),
-    //   effect: "group",
-    //   width: 500,
-    //   height: 350,
-    // }),
   ];
   platforms = [
     new Platform({
@@ -512,6 +479,7 @@ function animate() {
     });
   }
   var message = "";
+  var death_message = "";
   let element = document.getElementById("bonus-text");
   element.innerHTML = "";
   if (keys.left.pressed && scrollOffset == 0) {
@@ -574,8 +542,8 @@ function animate() {
       console.log("power source hit");
 
       if (powerSource.effect == "powerDown") {
-        message = "Kuch nahi rakha pyaar vyaar mai";
-        // <TO DO> Subtracting score from the final tally
+        death_message = "Pyaar vyaar sab moh maya hai";
+        setTimeout(init, 1500);
       } else if (powerSource.effect == "powerUp") {
         message = "Ma'am se milke zyada hi khush ho gaya <3";
         element.innerHTML = "Subscribe to Maths hi Maths";
@@ -656,17 +624,17 @@ function animate() {
   let points_player = scrollOffset;
 
   //lose condition
-  //let last_game_score = [""];
+
   if (player.position.y > canvas.height) {
-    //last_game_score.push(points_player);
-    //console.log("Score:" + last_game_score);
-    message = "Aur ghoomo Kheer Ganga!!";
+    message = lose_message;
+    console.log(message);
     setTimeout(init, 2000);
   }
 
   //message = "You scored " + last_game_score.slice(-1) + "in the last game!";
   document.getElementById("points").innerHTML = "Points:" + points_player;
   document.getElementById("message").innerHTML = message;
+  document.getElementById("lose_message").innerHTML = death_message;
 }
 
 init();
