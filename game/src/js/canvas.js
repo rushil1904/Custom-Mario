@@ -30,7 +30,7 @@ canvas.height = 576;
 //Inputing the value of gravity
 const gravity = 0.5;
 
-function lose_messages(event) {
+function lose_messages() {
   let num = Math.random();
 
   if (num > 0.5) {
@@ -40,8 +40,20 @@ function lose_messages(event) {
   }
 }
 
+function marriage_messages() {
+  let num = Math.random();
+
+  if (num > 0.5) {
+    return "Mubarak ho SHAADI ke liye";
+  } else {
+    return "Football team banayega ab Bhati yoga room mai";
+  }
+}
+
 var lose_message = lose_messages();
+var marriage_message = marriage_messages();
 console.log(lose_message);
+console.log(marriage_message);
 
 //Creating Player traits
 class Player {
@@ -550,7 +562,7 @@ function animate() {
         element.href = "https://www.youtube.com/@mathshimaths";
       } else if (powerSource.effect == "bride") {
         powerSource.image = createImage(marriage);
-        message = "Mubarak ho SHAADI ke liye";
+        message = marriage_message;
         play_sound = "marriage";
       } else if (powerSource.effect == "group") {
         //win condition
@@ -563,6 +575,7 @@ function animate() {
           player.currentCropWidth = 0;
           player.speed = 0;
           play_sound = "group";
+          setTimeout(window.location.reload(), 6000);
         }
       }
     }

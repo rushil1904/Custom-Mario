@@ -146,7 +146,7 @@ canvas.height = 576; //Device Support Prompt
 
 var gravity = 0.5;
 
-function lose_messages(event) {
+function lose_messages() {
   var num = Math.random();
 
   if (num > 0.5) {
@@ -156,8 +156,20 @@ function lose_messages(event) {
   }
 }
 
+function marriage_messages() {
+  var num = Math.random();
+
+  if (num > 0.5) {
+    return "Mubarak ho SHAADI ke liye";
+  } else {
+    return "Football team banayega ab Bhati yoga room mai";
+  }
+}
+
 var lose_message = lose_messages();
-console.log(lose_message); //Creating Player traits
+var marriage_message = marriage_messages();
+console.log(lose_message);
+console.log(marriage_message); //Creating Player traits
 
 var Player = /*#__PURE__*/function () {
   function Player() {
@@ -666,7 +678,7 @@ function animate() {
         element.href = "https://www.youtube.com/@mathshimaths";
       } else if (powerSource.effect == "bride") {
         powerSource.image = createImage(_media_marriage_png__WEBPACK_IMPORTED_MODULE_14__["default"]);
-        message = "Mubarak ho SHAADI ke liye";
+        message = marriage_message;
         play_sound = "marriage";
       } else if (powerSource.effect == "group") {
         //win condition
@@ -678,6 +690,7 @@ function animate() {
           player.currentCropWidth = 0;
           player.speed = 0;
           play_sound = "group";
+          setTimeout(window.location.reload(), 6000);
         }
       }
     }
