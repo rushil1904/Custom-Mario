@@ -108,15 +108,6 @@ section img#mountain {
     white-space: nowrap; 
     font-size: 8.0vw;
     z-index: 9;
-    /* text-shadow:
-      0 0 7px #fff,
-      0 0 10px #fff,
-      0 0 21px #fff,
-      0 0 42px rgb(215, 141, 247),
-      0 0 82px rgb(215, 141, 247),
-      0 0 92px rgb(215, 141, 247),
-      0 0 102px rgb(215, 141, 247),
-      0 0 151px rgb(215, 141, 247); */
 }
 #btn
 {
@@ -133,7 +124,7 @@ section img#mountain {
 .sec
 {
     position: relative;
-    padding: 100px;
+    padding: 60px;
     background: #1c0522;
 }
 .sec h2
@@ -146,4 +137,50 @@ section img#mountain {
 {
     font-size: 1.2em; 
     color:#fff;
+}
+.game-button {
+        background-color: #1c0522;
+        font-size: 16px;
+        position: relative;
+        padding-bottom: 40px;
+        text-align: center;
+}
+.button-81 {
+        background-color: #fff;
+        border: 0 solid #e2e8f0;
+        border-radius: 1.5rem;
+        box-sizing: border-box;
+        color: #0d172a;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 1.7rem;
+        font-weight: 600;
+        line-height: 1;
+        padding: 1rem 1.6rem;
+        text-align: center;
+        text-decoration: none #0d172a solid;
+        text-decoration-thickness: auto;
+        transition: all .1s cubic-bezier(.4, 0, .2, 1);
+        box-shadow: 0px 1px 2px rgba(166, 175, 195, 0.25);
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+      }
+      
+      .button-81:hover {
+        background-color: rgba(255, 255, 0, 0.965);
+        color: #2b1055;
+      }
+      
+      @media (min-width: 768px) {
+        .button-81 {
+          font-size: 1.125rem;
+          padding: 1rem 2rem;
+        }
+      }
+footer {
+        background-color: #1c0522da;
+        color: white;
+        text-align: center;
+        line-height: 1.2;
 }
