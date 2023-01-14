@@ -671,7 +671,7 @@ function animate() {
 
       if (powerSource.effect == "powerDown") {
         death_message = "Pyaar vyaar sab moh maya hai";
-        setTimeout(init, 1500);
+        setTimeout(init, 2200);
       } else if (powerSource.effect == "powerUp") {
         message = "Ma'am se milke zyada hi khush ho gaya <3";
         element.innerHTML = "Subscribe to Maths hi Maths";
