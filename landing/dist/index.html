@@ -9,6 +9,37 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
+    <div class="loader">
+      <div
+        aria-label="Orange and tan hamster running in a metal wheel"
+        role="img"
+        class="wheel-and-hamster"
+      >
+        <div class="wheel"></div>
+        <div class="hamster">
+          <div class="hamster__body">
+            <div class="hamster__head">
+              <div class="hamster__ear"></div>
+              <div class="hamster__eye"></div>
+              <div class="hamster__nose"></div>
+            </div>
+            <div class="hamster__limb hamster__limb--fr"></div>
+            <div class="hamster__limb hamster__limb--fl"></div>
+            <div class="hamster__limb hamster__limb--br"></div>
+            <div class="hamster__limb hamster__limb--bl"></div>
+            <div class="hamster__tail"></div>
+          </div>
+        </div>
+        <div class="spoke"></div>
+      </div>
+      <script>
+        var loader = document.querySelector(".loader");
+        window.addEventListener("load", vanish);
+        function vanish() {
+          loader.classList.add("disappear");
+        }
+      </script>
+    </div>
     <header>
       <a href="#" class="logo"><img src="favicon.ico" /></a>
       <ul>
@@ -43,10 +74,9 @@
       <p>
         Birthday ki lakh lakh badhiya bhai sahab. Phulo phalo khush raho. Rab
         Rakha.<br /><br />
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero iste
-        laboriosam justo sapiente voluptatum a, incidunt culpa quae.
-        Necessitatibus vero exercitationem accusantium nemo culpa ipsa tempora
-        quia? Aliquam, nemo doloribus.<br /><br />
+        Kuch Din baat na karne se koi begana nahi hota, koi bhi dost itna purana
+        nahi hota, dosti mein gile shikwe to chalte rahte hain par, iska matlab
+        doston ko bhulana nahi hota..<br /><br />
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero iste
         laboriosam justo sapiente voluptatum a, incidunt culpa quae.
         Necessitatibus vero exercitationem accusantium nemo culpa ipsa tempora
