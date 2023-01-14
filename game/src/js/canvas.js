@@ -294,6 +294,22 @@ function init() {
       width: 230,
       height: 300,
     }),
+    new PowerSource({
+      x: 0, //15310
+      y: 5000,
+      image: createImage(group_with_player),
+      effect: "group",
+      width: 230,
+      height: 300,
+    }),
+    new PowerSource({
+      x: 0,
+      y: 5000,
+      image: createImage(marriage),
+      effect: "bride",
+      width: 120,
+      height: 150,
+    }),
   ];
   platforms = [
     new Platform({

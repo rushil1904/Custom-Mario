@@ -433,6 +433,21 @@ function init() {
     effect: "group",
     width: 230,
     height: 300
+  }), new PowerSource({
+    x: 0,
+    //15310
+    y: 5000,
+    image: createImage(_media_Group_with_png__WEBPACK_IMPORTED_MODULE_16__["default"]),
+    effect: "group",
+    width: 230,
+    height: 300
+  }), new PowerSource({
+    x: 0,
+    y: 5000,
+    image: createImage(_media_marriage_png__WEBPACK_IMPORTED_MODULE_14__["default"]),
+    effect: "bride",
+    width: 120,
+    height: 150
   })];
   platforms = [new Platform({
     x: platformImage.width * 5 + 220,
