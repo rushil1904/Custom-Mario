@@ -690,7 +690,6 @@ function animate() {
           player.currentCropWidth = 0;
           player.speed = 0;
           play_sound = "group";
-          setTimeout(window.location.reload(), 6000);
         }
       }
     }
