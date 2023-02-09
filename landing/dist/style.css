@@ -19,7 +19,7 @@ header
         top: 0;
         left: 0;
         width: 100%;
-        padding: 30px 100px;            /* Maybe left/right padding can be changed */
+        padding: 30px 20px;            /* Maybe left/right padding can be changed */
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -49,12 +49,12 @@ header ul
 header ul li
 {
         List-style: none; 
-        margin-left: 20px;
+        margin-left: 25px;
 }
 header ul li a
 {
         text-decoration: none;
-        padding: 6px 15px;
+        padding: 6px 10px;
         color:#fff;
         border-radius: 20px;
 }
@@ -109,6 +109,12 @@ section img#mountain {
     font-size: 8.0vw;
     z-index: 9;
 }
+@media screen and (max-width: 960px) {
+        #text {
+                color: rgb(255, 255, 255);
+                font-size: 10.0vw;
+        }
+}
 #btn
 {
     text-decoration: none; 
@@ -138,11 +144,29 @@ section img#mountain {
     font-size: 1.2em; 
     color:#fff;
 }
+.instructions
+{
+    position: relative;
+    padding: 20px 60px;
+    background: #1c0522;
+}
+.instructions h2
+{
+    font-size: 3.5em; 
+    margin-bottom: 10px; 
+    color:#fff;
+}
+.instructions p
+{
+        font-size: 1.2em; 
+        color:#fff;
+}
 .game-button {
         background-color: #1c0522;
         font-size: 16px;
         position: relative;
         padding-bottom: 40px;
+        padding-top: 30px;
         text-align: center;
 }
 .button-81 {
@@ -168,7 +192,7 @@ section img#mountain {
       }
       
       .button-81:hover {
-        background-color: rgba(255, 255, 0, 0.965);
+        background-color: #ffb703;
         color: #2b1055;
       }
       
@@ -183,4 +207,11 @@ footer {
         color: white;
         text-align: center;
         line-height: 1.2;
+}
+footer a:link {
+        color: white;
+        /* text-decoration: none; */
+      }
+footer a:visited {
+        color: #ffb703;
 }
