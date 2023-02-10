@@ -130,7 +130,7 @@ section img#mountain {
 .sec
 {
     position: relative;
-    padding: 60px;
+    padding: 50px;
     background: #1c0522;
 }
 .sec h2
@@ -147,7 +147,7 @@ section img#mountain {
 .instructions
 {
     position: relative;
-    padding: 20px 60px;
+    padding: 10px 60px;
     background: #1c0522;
 }
 .instructions h2
@@ -160,6 +160,15 @@ section img#mountain {
 {
         font-size: 1.2em; 
         color:#fff;
+}
+blockquote {
+        color: #fff;
+        font-size: 1.2em; 
+        text-align: center;
+}
+#yellow-text
+{
+        color:yellow;
 }
 .game-button {
         background-color: #1c0522;
