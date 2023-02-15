@@ -806,7 +806,7 @@ function animate() {
   setTimeout(function () {
     document.getElementById("points").style.visibility = "visible";
     document.getElementById("points").style.opacity = "1";
-  }, 2000);
+  }, 1500);
   document.getElementById("points").innerHTML = "Points:" + points_player;
   document.getElementById("message").innerHTML = message;
   document.getElementById("lose_message").innerHTML = death_message;
