@@ -384,6 +384,8 @@ var enemies = [];
 var PowerSources = [];
 var marriage_audio = true;
 var group_audio = true;
+var lose_audio = true;
+var aww_audio = true;
 var lastKey;
 var keys = {
   right: {
@@ -399,6 +401,8 @@ var scrollOffset = 0;
 function init() {
   marriage_audio = true;
   group_audio = true;
+  lose_audio = true;
+  aww_audio = true;
   platformImage = createImage(_media_platform_png__WEBPACK_IMPORTED_MODULE_0__["default"]);
   player = new Player();
   enemies = [new Enemy({
@@ -688,7 +692,12 @@ function animate() {
       console.log(enemy.height);
 
       if (enemy.height != 10) {
-        init();
+        if (lose_audio == true) {
+          play("https://firebasestorage.googleapis.com/v0/b/storage-for-projects-d003c.appspot.com/o/tomp3.cc%20-%20Mario%20Death%20%20Sound%20Effect%20HD.mp3?alt=media&token=a5e24e75-d694-421f-9aca-8056913901a9");
+          lose_audio = false;
+        }
+
+        setTimeout(init, 200);
       }
     }
   });
@@ -697,7 +706,7 @@ function animate() {
   function play(link) {
     var audio = new Audio(link);
     audio.play();
-    audio.volume = 0.1;
+    audio.volume = 0.3;
     audio.loop = false;
   } //Power Source encounter
 
@@ -707,9 +716,21 @@ function animate() {
       console.log("power source hit");
 
       if (powerSource.effect == "powerDown") {
+        if (lose_audio == true) {
+          play("https://firebasestorage.googleapis.com/v0/b/storage-for-projects-d003c.appspot.com/o/tomp3.cc%20-%20Mario%20Death%20%20Sound%20Effect%20HD.mp3?alt=media&token=a5e24e75-d694-421f-9aca-8056913901a9");
+          lose_audio = false;
+        }
+
         death_message = "Pyaar vyaar sab moh maya hai";
+        player.speed = 0;
         setTimeout(init, 2200);
       } else if (powerSource.effect == "powerUp") {
+        if (aww_audio == true) {
+          play("https://firebasestorage.googleapis.com/v0/b/storage-for-projects-d003c.appspot.com/o/tomp3.cc%20-%20Female%20%20Aww%20%20So%20Cute%20%20%20Sound%20Effects-%5BAudioTrimmer.com%5D%20(1).mp3?alt=media&token=ccce16a7-d480-4cc3-9ac5-8504dc644147");
+          console.log("Ma'am audio played");
+          aww_audio = false;
+        }
+
         message = "Ma'am se milke zyada hi khush ho gaya <3";
         element.innerHTML = "Subscribe to Maths hi Maths";
         element.href = "https://www.youtube.com/@mathshimaths";
@@ -772,12 +793,21 @@ function animate() {
   var points_player = scrollOffset; //lose condition
 
   if (player.position.y > canvas.height) {
+    if (lose_audio == true) {
+      play("https://firebasestorage.googleapis.com/v0/b/storage-for-projects-d003c.appspot.com/o/tomp3.cc%20-%20Mario%20Death%20%20Sound%20Effect%20HD.mp3?alt=media&token=a5e24e75-d694-421f-9aca-8056913901a9");
+      lose_audio = false;
+    }
+
     message = lose_message;
     console.log(message);
     setTimeout(init, 2000);
   } //message = "You scored " + last_game_score.slice(-1) + "in the last game!";
 
 
+  setTimeout(function () {
+    document.getElementById("points").style.visibility = "visible";
+    document.getElementById("points").style.opacity = "1";
+  }, 2000);
   document.getElementById("points").innerHTML = "Points:" + points_player;
   document.getElementById("message").innerHTML = message;
   document.getElementById("lose_message").innerHTML = death_message;
