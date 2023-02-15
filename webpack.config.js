@@ -48,6 +48,7 @@ module.exports = {
       server: { baseDir: ["dist"] },
       files: ["./dist/*"],
       notify: false,
+      open: false,
     }),
     new HtmlWebpackPlugin({
       filename: "index.html",
