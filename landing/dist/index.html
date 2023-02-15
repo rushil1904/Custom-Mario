@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bhati: The Game</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <a href="#" class="logo"><img src="favicon.ico" /></a>
+      <ul>
+        <li><a href="#" class="active">Home</a></li>
+        <li>
+          <a
+            href="https://github.com/rushil1904/Custom-Mario"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Contribute</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.buymeacoffee.com/preachr"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Support</a
+          >
+        </li>
+      </ul>
+    </header>
+    <section>
+      <img src="scene4.jpg" id="scenery" />
+      <img src="sun2.png" id="sun" />
+      <h2 id="text">Bhati: The Game</h2>
+      <a href="#sec" id="btn">Explore</a>
+      <img src="hill5.png" id="mountain" />
+    </section>
+    <div class="sec" id="sec">
+      <h2>Happy Birthday Veere!!</h2>
+      <p>
+        Birthday ki lakh lakh vadhaiyan bhai sahab. Phulo phalo khush raho. Happy 23rd!!<br /><br /></p>
+        <blockquote>"Zindagi Har Pal Kuchh Khaas Nahi Hoti, <br />
+          Phoolo Ki Khushboo Hamesha Paas Nahi Hoti, <br />
+          Milna Humari Takdeer Mein Tha Varna, <br />
+          Itni Pyari Dosti ittefaaq Nahi Hoti."</blockquote><br />
+    </div>
+    <div class="instructions">
+      <div id="instructions">
+        <h2>Instructions</h2>
+        <p>
+          The game
+          <em id="yellow-text">works best on a device with keyboard support</em
+          >. Use 'W' for up movement, 'D' for right movement and 'A' for left
+          movement. <p>The game showcases unique messages on interaction with an
+          object in the game, reload the page for different permutations of the same.</p><br /><p>On this B'Day or Bhati Day let's revisit the 23 years of his life. Enjoy!</p>
+        </p>
+      </div>
+    </div>
+    <div class="game-button">
+      <button
+        class="button-81"
+        role="button"
+        onclick="window.location.href='https://bhati-the-game.onrender.com/';"
+      >
+        Play Game
+      </button>
+    </div>
+    <footer>
+      <p>
+        Copyright &copy;
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        Nasshediyo ka Adda
+      </p>
+      <p>
+        <a
+          href="https://www.youtube.com/@bhasadunscripted"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Youtube</a
+        >&nbsp;&nbsp;<a href="disclaimer.html" target="_blank">Disclaimer</a></p>
+    </footer>
+    <script>
+      let scenery = document.getElementById("scenery");
+      let sun = document.getElementById("sun");
+      let text = document.getElementById("text");
+      let btn = document.getElementById("btn");
+      let mountain = document.getElementById("mountain");
+      let header = document.querySelector("header");
+
+      window.addEventListener("scroll", function () {
+        let value = window.scrollY;
+        scenery.style.top = value * 0.5 + "px";
+        sun.style.top = value * 1 + "px";
+        mountain.style.top = value * 0 + "px";
+
+        text.style.marginRight = value * 4 + "px";
+        text.style.marginTop = value * 1.4 + "px";
+        btn.style.marginTop = value * 1.58 + "px";
+        header.style.top = value * 0.5 + "px";
+      });
+    </script>
+  </body>
+</html>
