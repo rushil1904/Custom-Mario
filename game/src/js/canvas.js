@@ -25,7 +25,6 @@ if (screen.width <= 850) {
   banner.style.top = "50px";
   banner.style.left = "0";
   banner.style.width = "100%";
-  // banner.style.background = "#f2f2f2";
   banner.style.padding = "10px";
   banner.style.textAlign = "center";
   banner.style.zIndex = "9999";
