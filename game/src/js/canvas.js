@@ -214,6 +214,8 @@ let platforms = [];
 let genericObjects = [];
 let enemies = [];
 let PowerSources = [];
+var marriage_audio = true;
+var group_audio = true;
 
 let lastKey;
 
@@ -229,6 +231,8 @@ const keys = {
 //Drawing objects on the canvas
 let scrollOffset = 0;
 function init() {
+  marriage_audio = true;
+  group_audio = true;
   platformImage = createImage(platform_pic);
   player = new Player();
   enemies = [
@@ -581,6 +585,7 @@ function animate() {
         message = marriage_message;
         play_sound = "marriage";
       } else if (powerSource.effect == "group") {
+        play_sound = "group";
         //win condition
         if (scrollOffset > 15324) {
           message =
@@ -590,28 +595,29 @@ function animate() {
           powerSource.height = 350;
           player.currentCropWidth = 0;
           player.speed = 0;
-          play_sound = "group";
+          element.innerHTML = "Press Spacebar to play again";
+          element.href = "javascript:location.reload()";
+          document.body.onkeyup = function (e) {
+            if (e.keyCode == 32) {
+              location.reload();
+            }
+          };
         }
       }
     }
   });
 
-  if (play_sound == "marriage") {
-    setTimeout(
-      play(
-        "https://firebasestorage.googleapis.com/v0/b/storage-for-projects-d003c.appspot.com/o/game-src-media-marriage-sound_gzK6Ajb8.mp3?alt=media&token=8366692c-3a4b-420d-82a7-1b482a526252"
-      ),
-      200
+  if (play_sound == "marriage" && marriage_audio == true) {
+    play(
+      "https://firebasestorage.googleapis.com/v0/b/storage-for-projects-d003c.appspot.com/o/game_src_media_marriage_sound.mp3?alt=media&token=d10a2cc4-c158-419f-bc75-bbba711081da"
     );
+    marriage_audio = false;
+  } else if (play_sound == "group" && group_audio == true) {
+    play(
+      "https://firebasestorage.googleapis.com/v0/b/storage-for-projects-d003c.appspot.com/o/2023-01-09-153544-0hxsfl0d_kCIcpwuZ.mp3?alt=media&token=b20f08ae-1be1-448f-8914-9501778ac3f6"
+    );
+    group_audio = false;
   }
-  // else if (play_sound == "group") {
-  //   setTimeout(
-  //     play(
-  //       "https://firebasestorage.googleapis.com/v0/b/storage-for-projects-d003c.appspot.com/o/2023-01-09-153544-0hxsfl0d_kCIcpwuZ.mp3?alt=media&token=b20f08ae-1be1-448f-8914-9501778ac3f6"
-  //     ),
-  //     200
-  //   );
-  // }
 
   //sprite switching
   if (
