@@ -143,11 +143,13 @@ if (screen.width <= 850) {
   banner.style.position = "fixed";
   banner.style.top = "50px";
   banner.style.left = "0";
-  banner.style.width = "100%";
-  banner.style.background = "#f2f2f2";
+  banner.style.width = "100%"; // banner.style.background = "#f2f2f2";
+
   banner.style.padding = "10px";
   banner.style.textAlign = "center";
   banner.style.zIndex = "9999";
+  banner.style.fontFamily = "VT323";
+  banner.style.color = "white";
   banner.style.fontSize = "40px";
   document.body.appendChild(banner);
 } //Setting up the canvas for the game
