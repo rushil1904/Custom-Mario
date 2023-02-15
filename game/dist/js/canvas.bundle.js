@@ -135,7 +135,22 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
- //Setting up the canvas for the game
+
+
+if (screen.width <= 850) {
+  var banner = document.createElement("div");
+  banner.innerHTML = "Looks life you are using a mobile device. You can play this game only on devices with keyboard support. Sorry :(";
+  banner.style.position = "fixed";
+  banner.style.top = "0";
+  banner.style.left = "0";
+  banner.style.width = "100%";
+  banner.style.background = "#f2f2f2";
+  banner.style.padding = "10px";
+  banner.style.textAlign = "center";
+  banner.style.zIndex = "9999";
+  document.body.appendChild(banner);
+} //Setting up the canvas for the game
+
 
 var canvas = document.querySelector("canvas");
 var c = canvas.getContext("2d");
