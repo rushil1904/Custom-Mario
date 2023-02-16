@@ -1,6 +1,8 @@
 # Custom Mario
 
-This is a custom mario game. The elements are customised to celebrate my friend's birthday. You can use this to create your own custom game or maybe contribute to this project to make it better.  
+This is a custom mario game. The elements are customised to celebrate my friend's birthday. You can use this to create your own custom game or maybe contribute to this project to make it better. 
+
+*The game works best on Chrome/ Chromium-based browsers.* 
 
 Links: https://bhati-home.onrender.com (Homepage)
 
