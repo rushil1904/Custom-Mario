@@ -17,6 +17,7 @@ import marriage from "../media/marriage.png";
 import group_without_player from "../media/Group_without.png";
 import group_with_player from "../media/Group_with.png";
 
+//Banner incase the gane is opened on a mobile device
 if (screen.width <= 850) {
   var banner = document.createElement("div");
   banner.innerHTML =
@@ -41,12 +42,10 @@ const c = canvas.getContext("2d");
 canvas.width = 1024;
 canvas.height = 576;
 
-//Device Support Prompt
-//alert("The game works best on a device with keyboard support");
-
 //Inputing the value of gravity
 const gravity = 0.5;
 
+//Outputting random message on hitting object
 function lose_messages() {
   let num = Math.random();
 
@@ -200,6 +199,7 @@ class PowerSource {
   }
 }
 
+//Function to create images for objects/powerSources
 function createImage(imageSrc) {
   const image = new Image();
   image.src = imageSrc;
@@ -225,6 +225,7 @@ class Enemy {
   }
 }
 
+//Declaring necessary variables
 let platformImage = createImage(platform_pic);
 let player = new Player();
 let platforms = [];
@@ -531,6 +532,7 @@ function animate() {
       enemy.position.x -= player.speed * 0.6;
     });
   }
+  //Declaring variables for displaying messages on the page
   var message = "";
   var death_message = "";
   let element = document.getElementById("bonus-text");
@@ -568,7 +570,6 @@ function animate() {
       player.position.x <= enemy.position.x + enemy.width &&
       player.position.y + player.height + player.velocity.y >= enemy.position.y
     ) {
-      console.log(enemy.height);
       if (enemy.height != 10) {
         if (lose_audio == true) {
           play(
@@ -583,6 +584,7 @@ function animate() {
 
   let play_sound = "false";
 
+  //Function to play audio
   function play(link) {
     var audio = new Audio(link);
     audio.play();
@@ -598,8 +600,6 @@ function animate() {
       player.position.y + player.height + player.velocity.y >=
         powerSource.position.y
     ) {
-      console.log("power source hit");
-
       if (powerSource.effect == "powerDown") {
         if (lose_audio == true) {
           play(
@@ -615,7 +615,6 @@ function animate() {
           play(
             "https://firebasestorage.googleapis.com/v0/b/storage-for-projects-d003c.appspot.com/o/tomp3.cc%20-%20Female%20%20Aww%20%20So%20Cute%20%20%20Sound%20Effects-%5BAudioTrimmer.com%5D%20(1).mp3?alt=media&token=ccce16a7-d480-4cc3-9ac5-8504dc644147"
           );
-          console.log("Ma'am audio played");
           aww_audio = false;
         }
         message = "Ma'am se milke zyada hi khush ho gaya <3";
@@ -648,6 +647,7 @@ function animate() {
     }
   });
 
+  //Playing audio
   if (play_sound == "marriage" && marriage_audio == true) {
     play(
       "https://firebasestorage.googleapis.com/v0/b/storage-for-projects-d003c.appspot.com/o/game_src_media_marriage_sound.mp3?alt=media&token=d10a2cc4-c158-419f-bc75-bbba711081da"
@@ -699,7 +699,6 @@ function animate() {
   let points_player = scrollOffset;
 
   //lose condition
-
   if (player.position.y > canvas.height) {
     if (lose_audio == true) {
       play(
@@ -708,11 +707,9 @@ function animate() {
       lose_audio = false;
     }
     message = lose_message;
-    console.log(message);
     setTimeout(init, 2000);
   }
 
-  //message = "You scored " + last_game_score.slice(-1) + "in the last game!";
   setTimeout(function () {
     document.getElementById("points").style.visibility = "visible";
     document.getElementById("points").style.opacity = "1";
@@ -722,9 +719,11 @@ function animate() {
   document.getElementById("lose_message").innerHTML = death_message;
 }
 
+//Starting the game
 init();
 animate();
 
+//Listening to keyboard presses
 window.addEventListener("keydown", ({ keyCode }) => {
   switch (keyCode) {
     case 65:

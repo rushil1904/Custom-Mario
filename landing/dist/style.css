@@ -19,7 +19,7 @@ header
         top: 0;
         left: 0;
         width: 100%;
-        padding: 30px 20px;            /* Maybe left/right padding can be changed */
+        padding: 30px 20px;           
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -130,13 +130,13 @@ section img#mountain {
 .sec
 {
     position: relative;
-    padding: 50px;
+    padding: 40px 60px;
     background: #1c0522;
 }
 .sec h2
 {
     font-size: 3.5em; 
-    margin-bottom: 10px; 
+    margin-bottom: 5px; 
     color:#fff;
 }
 .sec p
@@ -147,7 +147,7 @@ section img#mountain {
 .instructions
 {
     position: relative;
-    padding: 10px 60px;
+    padding: 5px 60px;
     background: #1c0522;
 }
 .instructions h2
