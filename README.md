@@ -18,5 +18,6 @@ You can help improve the game by making contributions. These can be:
 1. Addition of background music
 2. Independent creation of enemy objects which move back and forth only on their specific platforms
 3. Limit of one/two upper taps for the player
+4. Mobile support for game
 
 Thanks to [Chris Courses](https://youtu.be/4q2vvZn5aoo) for the initial setup. 
