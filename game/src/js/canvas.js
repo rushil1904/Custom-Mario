@@ -17,6 +17,78 @@ import marriage from "../media/marriage.png";
 import group_without_player from "../media/Group_without.png";
 import group_with_player from "../media/Group_with.png";
 
+let highScores = [];
+let currentPlayer = prompt("Enter your name:") || "Anonymous";
+
+let debounceTimer;
+let lastSavedScore = 0;
+let gameState = "playing";
+
+const SCORE_API_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://retrojump-adventure-server.onrender.com/api"
+    : "http://localhost:5001/api";
+
+function debouncedSaveScore(playerName, score, forceUpdate = false) {
+  clearTimeout(debounceTimer);
+  debounceTimer = setTimeout(() => {
+    if (forceUpdate || score > lastSavedScore) {
+      saveScore(playerName, score);
+      lastSavedScore = score;
+    }
+  }, 1000); // 1 second delay
+}
+
+async function getHighScores() {
+  try {
+    const response = await fetch(`${SCORE_API_URL}/scores`, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching high scores:", error);
+    return [];
+  }
+}
+
+async function saveScore(playerName, score) {
+  try {
+    const response = await fetch(`${SCORE_API_URL}/scores`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ playerName, score }),
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log("Score saved:", data);
+  } catch (error) {
+    console.error("Error saving score:", error);
+  }
+}
+
+function displayHighScores() {
+  const highScoresList = document.getElementById("high-scores-list");
+  highScoresList.innerHTML = "";
+  highScores.forEach((score, index) => {
+    const li = document.createElement("li");
+    li.textContent = `${index + 1}. ${score.playerName}: ${score.score}`;
+    highScoresList.appendChild(li);
+  });
+}
+
 //Banner incase the gane is opened on a mobile device
 if (screen.width <= 850) {
   var banner = document.createElement("div");
@@ -250,11 +322,12 @@ const keys = {
 
 //Drawing objects on the canvas
 let scrollOffset = 0;
-function init() {
+async function init() {
   marriage_audio = true;
   group_audio = true;
   lose_audio = true;
   aww_audio = true;
+  lastSavedScore = 0; // Reset the last saved score
   platformImage = createImage(platform_pic);
   player = new Player();
   enemies = [
@@ -474,6 +547,8 @@ function init() {
   ];
 
   scrollOffset = 0;
+  highScores = await getHighScores();
+  displayHighScores();
 }
 
 //building game
@@ -699,7 +774,8 @@ function animate() {
   let points_player = scrollOffset;
 
   //lose condition
-  if (player.position.y > canvas.height) {
+  if (player.position.y > canvas.height && gameState === "playing") {
+    gameState = "lost";
     if (lose_audio == true) {
       play(
         "https://firebasestorage.googleapis.com/v0/b/storage-for-projects-d003c.appspot.com/o/tomp3.cc%20-%20Mario%20Death%20%20Sound%20Effect%20HD.mp3?alt=media&token=a5e24e75-d694-421f-9aca-8056913901a9"
@@ -707,7 +783,11 @@ function animate() {
       lose_audio = false;
     }
     message = lose_message;
-    setTimeout(init, 2000);
+    debouncedSaveScore(currentPlayer, scrollOffset, true); // Use scrollOffset as the score
+    setTimeout(async () => {
+      await init();
+      gameState = "playing";
+    }, 2000);
   }
 
   setTimeout(function () {
@@ -720,8 +800,12 @@ function animate() {
 }
 
 //Starting the game
-init();
-animate();
+async function startGame() {
+  gameState = "playing";
+  await init();
+  animate();
+}
+startGame();
 
 //Listening to keyboard presses
 window.addEventListener("keydown", ({ keyCode }) => {
